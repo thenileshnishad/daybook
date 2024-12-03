@@ -1,9 +1,54 @@
 const User = require("../models/userModel");
 const bcrypt = require("bcryptjs");
+const validator = require("validator");
 
 const signup = async (req, res) => {
   try {
     const { email, firstName, lastName, password } = req.body;
+
+    if (!email || !firstName || !lastName || !password) {
+      return res.status(400).json({ message: "All fields are required!" });
+    }
+
+    if (!validator.isEmail(email)) {
+      return res.status(400).json({ message: "Invalid email format" });
+    }
+
+    if (email.length > 50) {
+      return res
+        .status(400)
+        .json({ message: "Email cannot exceed 50 characters" });
+    }
+
+    if (firstName.length > 50) {
+      return res
+        .status(400)
+        .json({ message: "First name cannot exceed 50 characters" });
+    }
+
+    if (lastName.length > 50) {
+      return res
+        .status(400)
+        .json({ message: "Last name cannot exceed 50 characters" });
+    }
+
+    if (password.length > 100) {
+      return res
+        .status(400)
+        .json({ message: "Password cannot exceed 100 characters" });
+    }
+
+    if (
+      !validator.isStrongPassword(password, {
+        minLength: 8,
+        minUppercase: 1,
+        minLowercase: 1,
+        minNumbers: 1,
+        minSymbols: 1,
+      })
+    ) {
+      return res.status(400).json({ message: "Please enter strong password" });
+    }
 
     const userExist = await User.findOne({ email });
 
