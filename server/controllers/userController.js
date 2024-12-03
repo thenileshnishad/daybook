@@ -83,4 +83,28 @@ const signup = async (req, res) => {
   }
 };
 
-module.exports = { signup };
+const login = async (req, res) => {
+  try {
+    const { email, password } = req.body;
+
+    const user = await User.findOne({ email });
+    if (!user) {
+      return res.status(401).json({ message: "Invalid credentials!" });
+    }
+
+    const passwordCompare = await bcrypt.compare(password, user.password);
+
+    if (passwordCompare) {
+      res.json({ message: "Login successful!" });
+    } else {
+      return res.status(401).json({ message: "Invalid credentials!" });
+    }
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({
+      message: "Something went wrong. Please try again later.",
+    });
+  }
+};
+
+module.exports = { signup, login };
