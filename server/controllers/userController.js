@@ -1,6 +1,7 @@
 const User = require("../models/userModel");
 const bcrypt = require("bcryptjs");
 const validator = require("validator");
+const generateToken = require("../utils/generateToken");
 
 const signup = async (req, res) => {
   try {
@@ -95,7 +96,15 @@ const login = async (req, res) => {
     const passwordCompare = await bcrypt.compare(password, user.password);
 
     if (passwordCompare) {
-      res.json({ message: "Login successful!" });
+      generateToken(user._id, res);
+      res.json({
+        message: "User signed up successfully!",
+        data: {
+          _id: user._id,
+          firstName: user.firstName,
+          lastName: user.lastName,
+        },
+      });
     } else {
       return res.status(401).json({ message: "Invalid credentials!" });
     }
