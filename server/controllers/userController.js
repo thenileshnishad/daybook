@@ -122,7 +122,11 @@ const logout = (req, res) => {
 };
 
 const profile = (req, res) => {
-  res.send(req.user); // Just for testing
+  const { email, firstName, lastName } = req.user;
+  res.status(200).json({
+    message: "Profile fetch successfully!",
+    data: { email, firstName, lastName },
+  });
 };
 
 module.exports = { signup, login, logout, profile };
