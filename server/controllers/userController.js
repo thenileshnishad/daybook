@@ -116,4 +116,9 @@ const login = async (req, res) => {
   }
 };
 
-module.exports = { signup, login };
+const logout = (req, res) => {
+  res.cookie("token", null, { expires: new Date(0) });
+  res.status(200).json({ message: "Logout successfully!" });
+};
+
+module.exports = { signup, login, logout };
