@@ -98,7 +98,7 @@ const login = async (req, res) => {
     if (passwordCompare) {
       generateToken(user._id, res);
       res.json({
-        message: "User signed up successfully!",
+        message: "User logged in successfully!",
         data: {
           _id: user._id,
           firstName: user.firstName,
@@ -109,7 +109,7 @@ const login = async (req, res) => {
       return res.status(401).json({ message: "Invalid credentials!" });
     }
   } catch (error) {
-    console.error(error);
+    console.error("Login failed: ", error);
     res.status(500).json({
       message: "Something went wrong. Please try again later.",
     });
