@@ -121,4 +121,40 @@ const logout = (req, res) => {
   res.status(200).json({ message: "Logout successfully!" });
 };
 
-module.exports = { signup, login, logout };
+const changePassword = async (req, res) => {
+  try {
+    const loggedUser = req.user;
+    const { oldPassword, newPassword } = req.body;
+
+    if (!oldPassword || !newPassword) {
+      return res
+        .status(400)
+        .json({ message: "Both old and new passwords are required!" });
+    }
+
+    const passwordCompare = await bcrypt.compare(
+      oldPassword,
+      loggedUser.password
+    );
+    if (!passwordCompare) {
+      return res.status(400).json({ message: "Old Password is incorrect!" });
+    }
+
+    if (!validator.isStrongPassword(newPassword)) {
+      return res.status(400).json({ message: "Please enter strong password!" });
+    }
+
+    const hashedPassword = await bcrypt.hash(newPassword, 10);
+    loggedUser.password = hashedPassword;
+    await loggedUser.save();
+
+    res.status(200).json({ message: "Password changed successfully!" });
+  } catch (error) {
+    console.error("Error updating password!: ", error);
+    res.status(500).json({
+      message: "Something went wrong! Please try again later!",
+    });
+  }
+};
+
+module.exports = { signup, login, logout, changePassword };
