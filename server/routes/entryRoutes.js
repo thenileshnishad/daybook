@@ -5,5 +5,6 @@ const entryController = require("../controllers/entryController");
 
 router.post("/", authMiddleware, entryController.addEntry);
 router.get("/", authMiddleware, entryController.getAllEntries);
+router.get("/:id", authMiddleware, entryController.getEntryById);
 
 module.exports = router;

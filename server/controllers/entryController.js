@@ -64,4 +64,29 @@ const getAllEntries = async (req, res) => {
   }
 };
 
-module.exports = { addEntry, getAllEntries };
+const getEntryById = async (req, res) => {
+  const loggedUser = req.user;
+  const entryId = req.params.id;
+
+  try {
+    const entry = await Entry.findOne({
+      _id: entryId,
+      createdBy: loggedUser._id,
+    }).populate("createdBy", "firstName lastName");
+
+    if (!entry) {
+      return res.status(404).json({
+        message: "Entry not found or does not belong to the logged-in user!",
+      });
+    }
+
+    res.status(200).json({ message: "Entry fetch successfully!", data: entry });
+  } catch (error) {
+    console.error("Error fetching this entry!: ", error);
+    res.status(500).json({
+      message: "Something went wrong! Please try again later!",
+    });
+  }
+};
+
+module.exports = { addEntry, getAllEntries, getEntryById };
