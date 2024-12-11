@@ -44,4 +44,24 @@ const addEntry = async (req, res) => {
   }
 };
 
-module.exports = { addEntry };
+const getAllEntries = async (req, res) => {
+  const loggedUser = req.user;
+
+  try {
+    const entries = await Entry.find({ createdBy: loggedUser._id }).populate(
+      "createdBy",
+      "firstName lastName"
+    );
+
+    res
+      .status(200)
+      .json({ message: "Entries fetch successfully!", data: entries });
+  } catch (error) {
+    console.error("Error fetching entries!: ", error);
+    res.status(500).json({
+      message: "Something went wrong! Please try again later!",
+    });
+  }
+};
+
+module.exports = { addEntry, getAllEntries };
