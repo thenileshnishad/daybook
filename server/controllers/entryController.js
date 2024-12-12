@@ -6,19 +6,19 @@ const addEntry = async (req, res) => {
   const loggedUser = req.user;
 
   if (!validator.isDate(date)) {
-    return res.status(400).json({
+    return res.status(422).json({
       message: "Please provide a valid date!",
     });
   }
 
   if (title.length > 20) {
-    return res.status(400).json({
+    return res.status(422).json({
       message: "Title length should not be more than 20 characters!",
     });
   }
 
   if (content.length > 1500) {
-    return res.status(400).json({
+    return res.status(422).json({
       message: "Content length should not be more than 1500 characters",
     });
   }
@@ -95,19 +95,19 @@ const updateEntry = async (req, res) => {
   const { date, title, mood, content } = req.body;
 
   if (!validator.isDate(date)) {
-    return res.status(400).json({
+    return res.status(422).json({
       message: "Please provide a valid date!",
     });
   }
 
   if (title.length > 20) {
-    return res.status(400).json({
+    return res.status(422).json({
       message: "Title length should not be more than 20 characters!",
     });
   }
 
   if (content.length > 1500) {
-    return res.status(400).json({
+    return res.status(422).json({
       message: "Content length should not be more than 1500 characters",
     });
   }
