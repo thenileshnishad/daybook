@@ -116,13 +116,15 @@ const updateEntry = async (req, res) => {
     const entry = await Entry.findOneAndUpdate(
       { _id: entryId, createdBy: loggedUser._id },
       { date, title, mood, content },
-      { new: true }
+      { new: true, runValidators: true }
     );
 
     if (!entry) {
       return res
         .status(404)
-        .json({ message: "Entry not found or not updated!" });
+        .json({
+          message: "Entry not found or not updated due to permissions!",
+        });
     }
 
     res

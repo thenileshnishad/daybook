@@ -13,13 +13,13 @@ const updateProfile = async (req, res) => {
   const { firstName, lastName } = req.body;
 
   if (!firstName || !lastName) {
-    return res.status(400).json({
+    return res.status(422).json({
       message: "All fields are required!",
     });
   }
 
   if (firstName.length > 50 || lastName.length > 50) {
-    return res.status(400).json({
+    return res.status(422).json({
       message: "First Name and Last Name length should be less than 50!",
     });
   }
