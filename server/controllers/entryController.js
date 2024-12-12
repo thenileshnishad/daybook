@@ -89,4 +89,51 @@ const getEntryById = async (req, res) => {
   }
 };
 
-module.exports = { addEntry, getAllEntries, getEntryById };
+const updateEntry = async (req, res) => {
+  const loggedUser = req.user;
+  const entryId = req.params.id;
+  const { date, title, mood, content } = req.body;
+
+  if (!validator.isDate(date)) {
+    return res.status(400).json({
+      message: "Please provide a valid date!",
+    });
+  }
+
+  if (title.length > 20) {
+    return res.status(400).json({
+      message: "Title length should not be more than 20 characters!",
+    });
+  }
+
+  if (content.length > 1500) {
+    return res.status(400).json({
+      message: "Content length should not be more than 1500 characters",
+    });
+  }
+
+  try {
+    const entry = await Entry.findOneAndUpdate(
+      { _id: entryId, createdBy: loggedUser._id },
+      { date, title, mood, content },
+      { new: true }
+    );
+
+    if (!entry) {
+      return res
+        .status(404)
+        .json({ message: "Entry not found or not updated!" });
+    }
+
+    res
+      .status(200)
+      .json({ message: "Entry updated successfully!", data: entry });
+  } catch (error) {
+    console.error("Error updating this entry!: ", error);
+    res.status(500).json({
+      message: "Something went wrong! Please try again later!",
+    });
+  }
+};
+
+module.exports = { addEntry, getAllEntries, getEntryById, updateEntry };
