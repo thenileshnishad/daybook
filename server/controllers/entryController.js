@@ -120,11 +120,9 @@ const updateEntry = async (req, res) => {
     );
 
     if (!entry) {
-      return res
-        .status(404)
-        .json({
-          message: "Entry not found or not updated due to permissions!",
-        });
+      return res.status(404).json({
+        message: "Entry not found or not updated due to permissions!",
+      });
     }
 
     res
@@ -138,4 +136,37 @@ const updateEntry = async (req, res) => {
   }
 };
 
-module.exports = { addEntry, getAllEntries, getEntryById, updateEntry };
+const deleteEntry = async (req, res) => {
+  const loggedUser = req.user;
+  const entryId = req.params.id;
+
+  try {
+    const entry = await Entry.findOneAndDelete({
+      _id: entryId,
+      createdBy: loggedUser._id,
+    });
+
+    if (!entry) {
+      return res.status(404).json({
+        message: "Entry not found or not deleted due to permissions!",
+      });
+    }
+
+    res
+      .status(200)
+      .json({ message: "Entry deleted successfully!", data: entry });
+  } catch (error) {
+    console.error("Error deleting this entry!: ", error);
+    res.status(500).json({
+      message: "Something went wrong! Please try again later!",
+    });
+  }
+};
+
+module.exports = {
+  addEntry,
+  getAllEntries,
+  getEntryById,
+  updateEntry,
+  deleteEntry,
+};
