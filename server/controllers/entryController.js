@@ -1,7 +1,7 @@
 const Entry = require("../models/entryModel");
 const validator = require("validator");
 
-const addEntry = async (req, res) => {
+const createEntry = async (req, res) => {
   const { date, mood, title, content } = req.body;
   const loggedUser = req.user;
 
@@ -44,7 +44,7 @@ const addEntry = async (req, res) => {
   }
 };
 
-const getAllEntries = async (req, res) => {
+const getEntries = async (req, res) => {
   const loggedUser = req.user;
 
   try {
@@ -55,7 +55,7 @@ const getAllEntries = async (req, res) => {
 
     res
       .status(200)
-      .json({ message: "Entries fetch successfully!", data: entries });
+      .json({ message: "Entries fetched successfully!", data: entries });
   } catch (error) {
     console.error("Error fetching entries!: ", error);
     res.status(500).json({
@@ -64,7 +64,7 @@ const getAllEntries = async (req, res) => {
   }
 };
 
-const getEntryById = async (req, res) => {
+const getEntry = async (req, res) => {
   const loggedUser = req.user;
   const entryId = req.params.id;
 
@@ -80,7 +80,7 @@ const getEntryById = async (req, res) => {
       });
     }
 
-    res.status(200).json({ message: "Entry fetch successfully!", data: entry });
+    res.status(200).json({ message: "Entry fetched successfully!", data: entry });
   } catch (error) {
     console.error("Error fetching this entry!: ", error);
     res.status(500).json({
@@ -164,9 +164,9 @@ const deleteEntry = async (req, res) => {
 };
 
 module.exports = {
-  addEntry,
-  getAllEntries,
-  getEntryById,
+  createEntry,
+  getEntries,
+  getEntry,
   updateEntry,
   deleteEntry,
 };

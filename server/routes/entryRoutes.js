@@ -3,10 +3,12 @@ const router = express.Router();
 const authMiddleware = require("../middleware/authMiddleware");
 const entryController = require("../controllers/entryController");
 
-router.post("/", authMiddleware, entryController.addEntry);
-router.get("/", authMiddleware, entryController.getAllEntries);
-router.get("/:id", authMiddleware, entryController.getEntryById);
-router.patch("/:id", authMiddleware, entryController.updateEntry);
-router.delete("/:id", authMiddleware, entryController.deleteEntry);
+router.use(authMiddleware);
+
+router.post("/", entryController.createEntry);
+router.get("/", entryController.getEntries);
+router.get("/:id", entryController.getEntry);
+router.patch("/:id", entryController.updateEntry);
+router.delete("/:id", entryController.deleteEntry);
 
 module.exports = router;
