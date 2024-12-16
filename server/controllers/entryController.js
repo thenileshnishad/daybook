@@ -80,7 +80,9 @@ const getEntry = async (req, res) => {
       });
     }
 
-    res.status(200).json({ message: "Entry fetched successfully!", data: entry });
+    res
+      .status(200)
+      .json({ message: "Entry fetched successfully!", data: entry });
   } catch (error) {
     console.error("Error fetching this entry!: ", error);
     res.status(500).json({
@@ -163,10 +165,26 @@ const deleteEntry = async (req, res) => {
   }
 };
 
+const searchEntries = async (req, res) => {
+  const loggedUser = req.user;
+  const queryText = req.query.text;
+
+  try {
+    //testing
+    res.send(loggedUser.firstName + queryText);
+  } catch (error) {
+    console.error("Error searching the entry!: ", error);
+    res.status(500).json({
+      message: "Something went wrong! Please try again later!",
+    });
+  }
+};
+
 module.exports = {
   createEntry,
   getEntries,
   getEntry,
   updateEntry,
   deleteEntry,
+  searchEntries,
 };
