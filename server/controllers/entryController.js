@@ -170,10 +170,29 @@ const searchEntries = async (req, res) => {
   const queryText = req.query.text;
 
   try {
-    //testing
-    res.send(loggedUser.firstName + queryText);
+    const entries = await Entry.find({
+      $and: [
+        {
+          $or: [
+            { title: { $regex: queryText, $options: "i" } },
+            { content: { $regex: queryText, $options: "i" } },
+          ],
+        },
+        { createdBy: loggedUser._id },
+      ],
+    });
+
+    if (entries.length === 0) {
+      return res
+        .status(404)
+        .json({ message: "No entries found matching your search!" });
+    }
+
+    res
+      .status(200)
+      .json({ message: "Entries fetched successfully!", data: entries });
   } catch (error) {
-    console.error("Error searching the entry!: ", error);
+    console.error("Error searching the entry!", error);
     res.status(500).json({
       message: "Something went wrong! Please try again later!",
     });
