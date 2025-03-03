@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -39,11 +40,18 @@ const Login = () => {
                 value={password}
               />
 
-              <button type="submit" className="btn btn-neutral mt-4 mb-2">
+              <button type="submit" className="btn btn-neutral mt-4">
                 Log in
               </button>
             </fieldset>
           </form>
+
+          <div className="text-center">
+            Don't have an account?{" "}
+            <Link to="/signup" className="text-red-500 hover:font-bold">
+              Sign up
+            </Link>
+          </div>
         </div>
       </div>
     </div>

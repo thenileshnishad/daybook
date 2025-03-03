@@ -53,7 +53,7 @@ const Navbar = () => {
       </div>
 
       <div className="navbar-end gap-2">
-        <Link to="/signup" className="btn">
+        <Link to="/signup" className="btn hidden lg:flex">
           Sign Up
         </Link>
         <Link to="/login" className="btn">
