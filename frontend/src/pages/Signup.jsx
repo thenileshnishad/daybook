@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { useSignupMutation } from "../redux/api/usersApiSlice";
 
 const Signup = () => {
   const [formData, setFormData] = useState({
@@ -9,6 +10,8 @@ const Signup = () => {
     password: "",
   });
 
+  const [signup, {isLoading, error}] = useSignupMutation();
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prevData) => {
@@ -16,9 +19,16 @@ const Signup = () => {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    try {
+      await signup(formData).unwrap();
+      alert("Success");
+    } catch (error) {
+      alert("Failed");
+    }
   };
+  console.log(import.meta.env.VITE_BACKEND_URL); // Should print the URL defined in your .env file
 
   return (
     <div className="flex justify-center items-center min-h-[calc(100vh-64px-52px)]">
@@ -84,7 +94,7 @@ const Signup = () => {
               </button>
             </fieldset>
           </form>
-          
+
           <div className="text-center">
             Already have an account?{" "}
             <Link to="/login" className="text-red-500 hover:font-bold">
