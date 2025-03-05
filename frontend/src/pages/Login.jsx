@@ -1,12 +1,21 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { useLoginMutation } from "../redux/api/usersApiSlice";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const handleSubmit = (e) => {
+  const [login, { isLoading, error }] = useLoginMutation();
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    try {
+      await login({ email, password }).unwrap();
+      alert("Sucess");
+    } catch (error) {
+      alert("Failed");
+    }
   };
 
   return (
