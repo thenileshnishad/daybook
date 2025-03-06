@@ -1,20 +1,23 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useLoginMutation } from "../redux/api/usersApiSlice";
+import { useDispatch } from "react-redux";
+import { userInfo } from "../redux/features/userSlice";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
   const [login, { isLoading, error }] = useLoginMutation();
+  const dispatch = useDispatch();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await login({ email, password }).unwrap();
-      alert("Sucess");
+      const response = await login({ email, password }).unwrap();
+      dispatch(userInfo(response));
+      alert(response.message);
     } catch (error) {
-      alert("Failed");
+      alert(error.data.message);
     }
   };
 

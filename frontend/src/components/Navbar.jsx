@@ -1,6 +1,9 @@
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
 const Navbar = () => {
+  const user = useSelector((state) => state.user);
+
   return (
     <div className="navbar bg-base-300 shadow-sm">
       <div className="navbar-start">
@@ -53,12 +56,20 @@ const Navbar = () => {
       </div>
 
       <div className="navbar-end gap-2">
-        <Link to="/signup" className="btn hidden lg:flex">
-          Sign Up
-        </Link>
-        <Link to="/login" className="btn">
-          Log In
-        </Link>
+        {user ? (
+          <div>
+            <p>Welcome, {user.data.firstName}</p>
+          </div>
+        ) : (
+          <>
+            <Link to="/signup" className="btn hidden lg:flex">
+              Sign Up
+            </Link>
+            <Link to="/login" className="btn">
+              Log In
+            </Link>
+          </>
+        )}
       </div>
     </div>
   );
