@@ -1,5 +1,6 @@
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import ThemeController from "./ThemeController";
 
 const Navbar = () => {
   const user = useSelector((state) => state.user);
@@ -56,6 +57,7 @@ const Navbar = () => {
       </div>
 
       <div className="navbar-end gap-2">
+        <ThemeController />
         {user ? (
           <div>
             <p>Welcome, {user.data.firstName}</p>
