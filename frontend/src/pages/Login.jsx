@@ -1,20 +1,25 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, replace, useLocation, useNavigate } from "react-router-dom";
 import { useLoginMutation } from "../redux/api/usersApiSlice";
 import { useDispatch } from "react-redux";
 import { userInfo } from "../redux/features/userSlice";
+import NoAuthModal from "../components/NoAuthModal";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [login, { isLoading, error }] = useLoginMutation();
+  const [login, { isLoading }] = useLoginMutation();
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const location = useLocation();
+  const showModal = location.state?.showModal || false;
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       const response = await login({ email, password }).unwrap();
       dispatch(userInfo(response));
+      navigate("/", replace);
       alert(response.message);
     } catch (error) {
       alert(error.data.message);
@@ -23,6 +28,7 @@ const Login = () => {
 
   return (
     <div className="flex justify-center items-center min-h-[calc(100vh-64px-52px)]">
+      {showModal && <NoAuthModal />}
       <div className="card bg-base-300 w-full max-w-sm shrink-0 shadow-2xl">
         <div className="card-body">
           <h2 className="card-title block text-center">Log in to DayBook</h2>
@@ -52,8 +58,12 @@ const Login = () => {
                 value={password}
               />
 
-              <button type="submit" className="btn btn-neutral mt-4">
-                Log in
+              <button
+                type="submit"
+                className="btn btn-neutral mt-4"
+                disabled={isLoading}
+              >
+                {isLoading ? "Logging in..." : "Log in"}
               </button>
             </fieldset>
           </form>
