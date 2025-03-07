@@ -11,7 +11,7 @@ import Entries from "./pages/Entries";
 import About from "./pages/About";
 import PrivateRoute from "./components/PrivateRoute";
 import Profile from "./pages/Profile";
-import UpdatePassword from "./pages/UpdatePassword";
+import ChangePassword from "./pages/ChangePassword";
 
 const App = () => {
   return (
@@ -27,7 +27,7 @@ const App = () => {
             <Route element={<PrivateRoute />}>
               <Route path="entries" element={<Entries />} />
               <Route path="profile" element={<Profile />} />
-              <Route path="update-password" element={<UpdatePassword />} />
+              <Route path="change-password" element={<ChangePassword />} />
             </Route>
           </Route>
         </Routes>

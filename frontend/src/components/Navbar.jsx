@@ -1,9 +1,29 @@
-import { useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { Link, useNavigate } from "react-router-dom";
 import ThemeController from "./ThemeController";
+import { useLogoutMutation } from "../redux/api/usersApiSlice";
+import { removeUserInfo } from "../redux/features/userSlice";
 
 const Navbar = () => {
   const user = useSelector((state) => state.user);
+  const [logout, { isLoading, isError }] = useLogoutMutation();
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const handleLogout = async () => {
+    try {
+      const response = await logout().unwrap();
+      dispatch(removeUserInfo());
+      navigate("/");
+      alert(response.message);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  if (isError) {
+    alert("Logout failed!");
+  }
 
   return (
     <div className="navbar bg-base-300 shadow-sm">
@@ -59,8 +79,25 @@ const Navbar = () => {
       <div className="navbar-end gap-2">
         <ThemeController />
         {user ? (
-          <div>
-            <p>Welcome, {user.data.firstName}</p>
+          <div className="dropdown dropdown-end">
+            <div
+              tabIndex={0}
+              role="button"
+              className="btn btn-ghost btn-circle"
+            >
+              {user.data.firstName}
+            </div>
+            <ul className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow">
+              <li>
+                <Link to="/profile">Profile</Link>
+              </li>
+              <li>
+                <Link to="/change-password">Change Password</Link>
+              </li>
+              <li>
+                <button onClick={handleLogout}>Log out</button>
+              </li>
+            </ul>
           </div>
         ) : (
           <>
