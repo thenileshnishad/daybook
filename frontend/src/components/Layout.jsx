@@ -1,23 +1,30 @@
 import { Outlet } from "react-router-dom";
 import Navbar from "./Navbar";
 import Footer from "./Footer";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useProfileQuery } from "../redux/api/usersApiSlice";
 import { useDispatch } from "react-redux";
 import { removeUserInfo, userInfo } from "../redux/features/userSlice";
 
 const Layout = () => {
-  const { data: profile, isError } = useProfileQuery();
+  const { data: profile, isError, isLoading } = useProfileQuery();
   const dispatch = useDispatch();
+  const [isReady, setIsReady] = useState(false);
 
   useEffect(() => {
-    if (profile) {
-      dispatch(userInfo(profile));
+    if (!isLoading) {
+      if (profile) {
+        dispatch(userInfo(profile));
+      } else if (isError) {
+        dispatch(removeUserInfo());
+      }
+      setIsReady(true);
     }
-    if (isError) {
-      dispatch(removeUserInfo());
-    }
-  }, [profile, dispatch, isError]);
+  }, [profile, dispatch, isError, isLoading]);
+
+  if (!isReady) {
+    return <p>Loading</p>;
+  }
 
   return (
     <div className="flex flex-col min-h-screen">

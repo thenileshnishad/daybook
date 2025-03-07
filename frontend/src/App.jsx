@@ -9,6 +9,9 @@ import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import Entries from "./pages/Entries";
 import About from "./pages/About";
+import PrivateRoute from "./components/PrivateRoute";
+import Profile from "./pages/Profile";
+import UpdatePassword from "./pages/UpdatePassword";
 
 const App = () => {
   return (
@@ -19,8 +22,13 @@ const App = () => {
             <Route index element={<Home />} />
             <Route path="login" element={<Login />} />
             <Route path="signup" element={<Signup />} />
-            <Route path="entries" element={<Entries />} />
             <Route path="about" element={<About />} />
+
+            <Route element={<PrivateRoute />}>
+              <Route path="entries" element={<Entries />} />
+              <Route path="profile" element={<Profile />} />
+              <Route path="update-password" element={<UpdatePassword />} />
+            </Route>
           </Route>
         </Routes>
       </BrowserRouter>
