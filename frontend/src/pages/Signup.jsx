@@ -10,7 +10,7 @@ const Signup = () => {
     password: "",
   });
 
-  const [signup, {isLoading, error}] = useSignupMutation();
+  const [signup, { isLoading, error }] = useSignupMutation();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -32,19 +32,19 @@ const Signup = () => {
 
   return (
     <div className="flex justify-center items-center min-h-[calc(100vh-64px-52px)]">
-      <div className="card bg-base-300 w-full max-w-sm shrink-0 shadow-2xl">
+      <div className="card bg-base-200 w-full max-w-sm shrink-0 shadow-2xl">
         <div className="card-body">
           <h2 className="card-title block text-center">Sign up to DayBook</h2>
           <form onSubmit={handleSubmit}>
             <fieldset className="fieldset w-xs p-2 pl-6">
               <label htmlFor="firstname" className="fieldset-label mb-1">
-                Name
+                First Name <span className="text-red-500">*</span>
               </label>
               <input
                 id="firstname"
                 type="text"
                 className="input mb-2"
-                placeholder="Enter name"
+                placeholder="Enter your first name"
                 onChange={handleChange}
                 name="firstName"
                 value={formData.firstName}
@@ -57,27 +57,27 @@ const Signup = () => {
                 id="lastname"
                 type="text"
                 className="input mb-2"
-                placeholder="Enter last name"
+                placeholder="Enter your last name"
                 onChange={handleChange}
                 name="lastName"
                 value={formData.lastName}
               />
 
               <label htmlFor="email" className="fieldset-label mb-1">
-                Email
+                Email <span className="text-red-500">*</span>
               </label>
               <input
                 id="email"
                 type="email"
                 className="input mb-2"
-                placeholder="Enter email"
+                placeholder="Email address"
                 onChange={handleChange}
                 name="email"
                 value={formData.email}
               />
 
               <label htmlFor="password" className="fieldset-label mb-1">
-                Password
+                Password <span className="text-red-500">*</span>
               </label>
               <input
                 id="password"

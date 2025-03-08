@@ -7,8 +7,8 @@ const signup = async (req, res) => {
   try {
     const { email, firstName, lastName, password } = req.body;
 
-    if (!email || !firstName || !lastName || !password) {
-      return res.status(400).json({ message: "All fields are required!" });
+    if (!email || !firstName || !password) {
+      return res.status(400).json({ message: "Fill all required fields!" });
     }
 
     if (!validator.isEmail(email)) {
@@ -27,7 +27,7 @@ const signup = async (req, res) => {
         .json({ message: "First name cannot exceed 50 characters!" });
     }
 
-    if (lastName.length > 50) {
+    if (lastName && lastName.length > 50) {
       return res
         .status(422)
         .json({ message: "Last name cannot exceed 50 characters!" });

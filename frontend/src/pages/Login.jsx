@@ -29,13 +29,13 @@ const Login = () => {
   return (
     <div className="flex justify-center items-center min-h-[calc(100vh-64px-52px)]">
       {showModal && <NoAuthModal />}
-      <div className="card bg-base-300 w-full max-w-sm shrink-0 shadow-2xl">
+      <div className="card bg-base-200 w-full max-w-sm shrink-0 shadow-2xl">
         <div className="card-body">
           <h2 className="card-title block text-center">Log in to DayBook</h2>
           <form onSubmit={handleSubmit}>
             <fieldset className="fieldset w-xs p-2 pl-6">
               <label htmlFor="email" className="fieldset-label mb-1">
-                Email
+                Email <span className="text-red-500">*</span>
               </label>
               <input
                 id="email"
@@ -47,7 +47,7 @@ const Login = () => {
               />
 
               <label htmlFor="password" className="fieldset-label mb-1">
-                Password
+                Password <span className="text-red-500">*</span>
               </label>
               <input
                 id="password"

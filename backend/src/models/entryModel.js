@@ -11,7 +11,7 @@ const entrySchema = new mongoose.Schema(
     title: String,
     mood: {
       type: String,
-      enum: ["happy", "sad", "neutral", "excited", "angry"],
+      enum: ["🙂", "😔", "😡"],
     },
     content: String,
   },

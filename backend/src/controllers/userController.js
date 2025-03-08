@@ -12,9 +12,9 @@ const updateProfile = async (req, res) => {
   const loggedUser = req.user;
   const { firstName, lastName } = req.body;
 
-  if (!firstName || !lastName) {
+  if (!firstName) {
     return res.status(422).json({
-      message: "All fields are required!",
+      message: "First name is required!",
     });
   }
 
