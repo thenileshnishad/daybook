@@ -6,7 +6,7 @@ const apiSlice = createApi({
     baseUrl: `${import.meta.env.VITE_BACKEND_URL}/api`,
     credentials: "include",
   }),
-  tagTypes: ["User"],
+  tagTypes: ["User", "Entries"],
   endpoints: (builder) => ({}),
 });
 
