@@ -3,13 +3,14 @@ import { Link, replace, useNavigate } from "react-router-dom";
 import { useLoginMutation } from "../redux/api/usersApiSlice";
 import { useDispatch } from "react-redux";
 import { userInfo } from "../redux/features/userSlice";
+import { toast } from "react-toastify";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [login, { isLoading }] = useLoginMutation();
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const [login, { isLoading }] = useLoginMutation();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -17,9 +18,9 @@ const Login = () => {
       const response = await login({ email, password }).unwrap();
       dispatch(userInfo(response));
       navigate("/", replace);
-      alert(response.message);
+      toast.success(response.message);
     } catch (error) {
-      alert(error.data.message);
+      toast.error(error.data.message);
     }
   };
 

@@ -3,10 +3,16 @@ import { Link, useNavigate } from "react-router-dom";
 import ThemeController from "./ThemeController";
 import { useLogoutMutation } from "../redux/api/usersApiSlice";
 import { removeUserInfo } from "../redux/features/userSlice";
+import { toast } from "react-toastify";
+
+import { FaHome, FaPencilAlt, FaInfo } from "react-icons/fa";
+import { FaRegUser } from "react-icons/fa";
+import { TbLockPassword } from "react-icons/tb";
+import { IoMdLogOut } from "react-icons/io";
 
 const Navbar = () => {
   const user = useSelector((state) => state.user);
-  const [logout, { isLoading, isError }] = useLogoutMutation();
+  const [logout, { isLoading }] = useLogoutMutation();
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -15,15 +21,12 @@ const Navbar = () => {
       const response = await logout().unwrap();
       dispatch(removeUserInfo());
       navigate("/");
-      alert(response.message);
+      toast.success(response.message);
     } catch (error) {
       console.error(error);
+      toast.error("Logout failed!");
     }
   };
-
-  if (isError) {
-    alert("Logout failed!");
-  }
 
   return (
     <div className="navbar bg-base-300 shadow-sm">
@@ -47,13 +50,22 @@ const Navbar = () => {
           </div>
           <ul className="menu menu-sm dropdown-content bg-base-300 rounded-box z-1 mt-3 w-52 p-2 shadow">
             <li>
-              <Link to="/">Home</Link>
+              <Link to="/">
+                <FaHome />
+                Home
+              </Link>
             </li>
             <li>
-              <Link to="/entries">Entries</Link>
+              <Link to="/entries">
+                <FaPencilAlt />
+                Entries
+              </Link>
             </li>
             <li>
-              <Link to="/about">About</Link>
+              <Link to="/about">
+                <FaInfo />
+                About
+              </Link>
             </li>
           </ul>
         </div>
@@ -65,37 +77,52 @@ const Navbar = () => {
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1">
           <li>
-            <Link to="/">Home</Link>
+            <Link to="/">
+              <FaHome />
+              Home
+            </Link>
           </li>
           <li>
-            <Link to="/entries">Entries</Link>
+            <Link to="/entries">
+              <FaPencilAlt />
+              Entries
+            </Link>
           </li>
           <li>
-            <Link to="/about">About</Link>
+            <Link to="/about">
+              <FaInfo />
+              About
+            </Link>
           </li>
         </ul>
       </div>
 
-      <div className="navbar-end gap-2">
+      <div className="navbar-end">
         <ThemeController />
         {user ? (
           <div className="dropdown dropdown-end">
-            <div
-              tabIndex={0}
-              role="button"
-              className="btn btn-ghost btn-circle"
-            >
+            <div tabIndex={0} role="button" className="btn btn-ghost text-lg">
+              <FaRegUser />
               {user.data.firstName}
             </div>
             <ul className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow">
               <li>
-                <Link to="/profile">Profile</Link>
+                <Link to="/profile">
+                  <FaRegUser />
+                  Profile
+                </Link>
               </li>
               <li>
-                <Link to="/change-password">Change Password</Link>
+                <Link to="/change-password">
+                  <TbLockPassword />
+                  Change Password
+                </Link>
               </li>
               <li>
-                <button onClick={handleLogout}>Log out</button>
+                <button onClick={handleLogout}>
+                  <IoMdLogOut />
+                  Log out
+                </button>
               </li>
             </ul>
           </div>

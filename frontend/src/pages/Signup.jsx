@@ -1,6 +1,7 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useSignupMutation } from "../redux/api/usersApiSlice";
+import { toast } from "react-toastify";
 
 const Signup = () => {
   const [formData, setFormData] = useState({
@@ -9,8 +10,8 @@ const Signup = () => {
     email: "",
     password: "",
   });
-
-  const [signup, { isLoading, error }] = useSignupMutation();
+  const navigate = useNavigate();
+  const [signup, { isLoading }] = useSignupMutation();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -22,13 +23,13 @@ const Signup = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await signup(formData).unwrap();
-      alert("Success");
+      const response = await signup(formData).unwrap();
+      navigate("/login");
+      toast.success(`Signed up successfully, ${response.user.firstName}`);
     } catch (error) {
-      alert("Failed");
+      toast.info(error.data.message);
     }
   };
-  console.log(import.meta.env.VITE_BACKEND_URL); // Should print the URL defined in your .env file
 
   return (
     <div className="flex justify-center items-center min-h-[calc(100vh-64px-52px)]">
@@ -89,8 +90,12 @@ const Signup = () => {
                 value={formData.password}
               />
 
-              <button type="submit" className="btn btn-neutral mt-4">
-                Sign up
+              <button
+                type="submit"
+                className="btn btn-neutral mt-4"
+                disabled={isLoading}
+              >
+                {isLoading ? "Signing up..." : "Sign up"}
               </button>
             </fieldset>
           </form>
