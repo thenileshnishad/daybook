@@ -1,9 +1,8 @@
 import { useState } from "react";
-import { Link, replace, useLocation, useNavigate } from "react-router-dom";
+import { Link, replace, useNavigate } from "react-router-dom";
 import { useLoginMutation } from "../redux/api/usersApiSlice";
 import { useDispatch } from "react-redux";
 import { userInfo } from "../redux/features/userSlice";
-import NoAuthModal from "../components/NoAuthModal";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -11,8 +10,6 @@ const Login = () => {
   const [login, { isLoading }] = useLoginMutation();
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const location = useLocation();
-  const showModal = location.state?.showModal || false;
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -28,7 +25,6 @@ const Login = () => {
 
   return (
     <div className="flex justify-center items-center min-h-[calc(100vh-64px-52px)]">
-      {showModal && <NoAuthModal />}
       <div className="card bg-base-200 w-full max-w-sm shrink-0 shadow-2xl">
         <div className="card-body">
           <h2 className="card-title block text-center">Log in to DayBook</h2>
