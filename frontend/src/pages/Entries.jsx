@@ -1,8 +1,11 @@
 import { useGetEntriesQuery } from "../redux/api/entriesApiSlice";
 import EntryCard from "../components/entries/EntryCard";
+import { useNavigate } from "react-router-dom";
+import { FaPlus } from "react-icons/fa";
 
 const Entries = () => {
   const { data: getEntries, isLoading } = useGetEntriesQuery();
+  const navigate = useNavigate();
 
   if (isLoading) {
     return <p>Loading...</p>;
@@ -23,6 +26,12 @@ const Entries = () => {
           updatedAt={entry.updatedAt}
         />
       ))}
+      <button
+        onClick={() => navigate("/add-entry")}
+        className="btn btn-circle fixed text-2xl bottom-20 right-7 w-16 h-16 hover:shadow-2xl"
+      >
+        <FaPlus />
+      </button>
     </div>
   );
 };

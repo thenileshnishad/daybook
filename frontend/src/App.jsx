@@ -8,9 +8,10 @@ import Layout from "./components/Layout";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
-import Entries from "./pages/Entries";
 import About from "./pages/About";
 import PrivateRoute from "./components/PrivateRoute";
+import AddEntry from "./pages/AddEntry";
+import Entries from "./pages/Entries";
 import Profile from "./pages/Profile";
 import ChangePassword from "./pages/ChangePassword";
 
@@ -27,6 +28,7 @@ const App = () => {
             <Route path="about" element={<About />} />
 
             <Route element={<PrivateRoute />}>
+              <Route path="add-entry" element={<AddEntry />} />
               <Route path="entries" element={<Entries />} />
               <Route path="profile" element={<Profile />} />
               <Route path="change-password" element={<ChangePassword />} />

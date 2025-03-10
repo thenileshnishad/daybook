@@ -101,7 +101,11 @@ const Navbar = () => {
         <ThemeController />
         {user ? (
           <div className="dropdown dropdown-end">
-            <div tabIndex={0} role="button" className="btn btn-ghost text-lg">
+            <div
+              tabIndex={0}
+              role="button"
+              className="btn bg-transparent border-none shadow-none"
+            >
               <FaRegUser />
               {user.data.firstName}
             </div>
