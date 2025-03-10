@@ -5,7 +5,7 @@ import { useLogoutMutation } from "../redux/api/usersApiSlice";
 import { removeUserInfo } from "../redux/features/userSlice";
 import { toast } from "react-toastify";
 
-import { FaHome, FaPencilAlt, FaInfo } from "react-icons/fa";
+import { FaHome, FaPencilAlt, FaBookOpen, FaInfo } from "react-icons/fa";
 import { FaRegUser } from "react-icons/fa";
 import { TbLockPassword } from "react-icons/tb";
 import { IoMdLogOut } from "react-icons/io";
@@ -57,8 +57,14 @@ const Navbar = () => {
             </li>
             <li>
               <Link to="/entries">
+                <FaBookOpen />
+                View Entries
+              </Link>
+            </li>
+            <li>
+              <Link to="/add-entry">
                 <FaPencilAlt />
-                Entries
+                Add Entry
               </Link>
             </li>
             <li>
@@ -84,8 +90,14 @@ const Navbar = () => {
           </li>
           <li>
             <Link to="/entries">
+              <FaBookOpen />
+              View Entries
+            </Link>
+          </li>
+          <li>
+            <Link to="/add-entry">
               <FaPencilAlt />
-              Entries
+              Add Entry
             </Link>
           </li>
           <li>
