@@ -1,11 +1,12 @@
+import Navbar from "./navbar/Navbar";
 import { Outlet } from "react-router-dom";
-import Navbar from "./Navbar";
 import Footer from "./Footer";
 import { useEffect, useState } from "react";
 import { useProfileQuery } from "../redux/api/usersApiSlice";
 import { useDispatch } from "react-redux";
 import { removeUserInfo, userInfo } from "../redux/features/userSlice";
 import Loader from "./Loader";
+import NavLinks from "./navbar/NavLinks";
 
 const Layout = () => {
   const { data: profile, isError, isLoading } = useProfileQuery();
@@ -28,12 +29,26 @@ const Layout = () => {
   }
 
   return (
-    <div className="flex flex-col min-h-screen">
-      <Navbar />
-      <main className="flex-1">
-        <Outlet />
-      </main>
-      <Footer />
+    <div className="drawer">
+      <input id="my-drawer-3" type="checkbox" className="drawer-toggle" />
+      <div className="drawer-content flex flex-col min-h-screen">
+        <Navbar />
+        <main className="flex-1">
+          <Outlet />
+        </main>
+        <Footer />
+      </div>
+
+      <div className="drawer-side z-20">
+        <label
+          htmlFor="my-drawer-3"
+          aria-label="close sidebar"
+          className="drawer-overlay"
+        ></label>
+        <ul className="menu bg-base-200 min-h-screen w-80 p-4">
+          <NavLinks />
+        </ul>
+      </div>
     </div>
   );
 };

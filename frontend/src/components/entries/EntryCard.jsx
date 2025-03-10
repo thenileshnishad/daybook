@@ -23,7 +23,7 @@ const EntryCard = ({ date, title, mood, content, updatedAt }) => {
 
       <div className="card-body p-4">
         <h2 className="card-title">{title}</h2>
-        <p>{contentLimit}</p>
+        <p className="break-words">{contentLimit}</p>
       </div>
 
       <div className="text-right text-sm p-2">Edited: {formattedUpdateAt}</div>
