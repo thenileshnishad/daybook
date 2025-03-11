@@ -15,7 +15,7 @@ const Entries = () => {
   }
 
   return (
-    <div className="flex flex-wrap gap-5 justify-center my-10 min-h-[calc(100vh-64px-52px)]">
+    <div className="flex flex-wrap gap-10 justify-center items-center my-10 min-h-[calc(100vh-64px-52px)]">
       {getEntries.data.map((entry) => (
         <EntryCard
           key={entry._id}
@@ -29,7 +29,7 @@ const Entries = () => {
       ))}
       <button
         onClick={() => navigate("/add-entry")}
-        className="btn btn-circle fixed text-2xl bottom-20 right-7 w-16 h-16 hover:shadow-2xl"
+        className="btn btn-circle fixed text-2xl bottom-20 right-7 w-16 h-16 hover:shadow-2xl text-primary"
       >
         <FaPlus />
       </button>

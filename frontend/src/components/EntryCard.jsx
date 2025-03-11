@@ -1,5 +1,6 @@
 import { FaPencilAlt } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
+import ReadMore from "./ReadMore";
 
 const EntryCard = ({ id, date, title, mood, content, updatedAt }) => {
   const navigate = useNavigate();
@@ -20,8 +21,8 @@ const EntryCard = ({ id, date, title, mood, content, updatedAt }) => {
     content.length > 215 ? `${content.slice(0, 215)}...` : content;
 
   return (
-    <div className="card bg-base-200 w-80 h-64 shadow-xl hover:shadow-2xl">
-      <div className="flex justify-between items-center pt-2 px-3">
+    <div className="card bg-base-200 w-100 h-70 shadow-xl hover:shadow-2xl rounded-3xl">
+      <div className="flex justify-between items-center pt-4 px-3">
         <p className="text-sm">{formattedDate}</p>
         <p
           className="hover:text-primary"
@@ -38,9 +39,17 @@ const EntryCard = ({ id, date, title, mood, content, updatedAt }) => {
         <p className="break-words">{contentLimit}</p>
       </div>
 
-      <div className="flex justify-between items-center pb-1 px-3">
+      <div className="flex justify-between items-center pb-4 px-3">
         <div className="text-left text-sm">Edited: {formattedUpdateAt}</div>
-        <p>Uoo</p>
+        <div className="text-left text-sm">
+          <ReadMore
+            formattedDate={formattedDate}
+            title={title}
+            mood={mood}
+            content={content}
+            formattedUpdateAt={formattedUpdateAt}
+          />
+        </div>
       </div>
     </div>
   );
