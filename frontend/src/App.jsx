@@ -12,6 +12,7 @@ import About from "./pages/About";
 import PrivateRoute from "./components/PrivateRoute";
 import AddEntry from "./pages/AddEntry";
 import Entries from "./pages/Entries";
+import EditEntry from "./pages/EditEntry";
 import Profile from "./pages/Profile";
 import ChangePassword from "./pages/ChangePassword";
 
@@ -30,6 +31,7 @@ const App = () => {
             <Route element={<PrivateRoute />}>
               <Route path="add-entry" element={<AddEntry />} />
               <Route path="entries" element={<Entries />} />
+              <Route path="entries/:id/edit" element={<EditEntry />} />
               <Route path="profile" element={<Profile />} />
               <Route path="change-password" element={<ChangePassword />} />
             </Route>

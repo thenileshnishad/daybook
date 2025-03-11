@@ -1,5 +1,5 @@
 import { useGetEntriesQuery } from "../redux/api/entriesApiSlice";
-import EntryCard from "../components/entries/EntryCard";
+import EntryCard from "../components/EntryCard";
 import { useNavigate } from "react-router-dom";
 import { FaPlus } from "react-icons/fa";
 
@@ -19,6 +19,7 @@ const Entries = () => {
       {getEntries.data.map((entry) => (
         <EntryCard
           key={entry._id}
+          id={entry._id}
           date={entry.date}
           title={entry.title}
           mood={entry.mood}

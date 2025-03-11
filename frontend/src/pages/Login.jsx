@@ -18,7 +18,7 @@ const Login = () => {
       const response = await login({ email, password }).unwrap();
       dispatch(userInfo(response));
       navigate("/", replace);
-      toast.success(response.message);
+      toast.success(`Welcome, ${response.data.firstName}`);
     } catch (error) {
       toast.error(error.data.message);
     }

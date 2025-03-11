@@ -1,15 +1,34 @@
-import { useState } from "react";
-import { useAddEntryMutation } from "../redux/api/entriesApiSlice";
-import { useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
+import {
+  useGetEntryQuery,
+  useUpdateEntryMutation,
+} from "../redux/api/entriesApiSlice";
+import { useNavigate, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 
-const AddEntry = () => {
+const EditEntry = () => {
+  const { id } = useParams();
+  const [updateEntry, { isLoading }] = useUpdateEntryMutation();
+  const { data: getEntry } = useGetEntryQuery(id);
+  const navigate = useNavigate();
+
   const [formData, setFormData] = useState({
     title: "",
-    mood: "🙂",
+    mood: "",
     content: "",
-    date: new Date().toISOString().slice(0, 10),
+    date: "",
   });
+
+  useEffect(() => {
+    if (getEntry) {
+      setFormData({
+        title: getEntry.data?.title || "",
+        mood: getEntry.data?.mood || "",
+        content: getEntry.data?.content || "",
+        date: new Date(getEntry.data?.date).toISOString().slice(0, 10) || "",
+      });
+    }
+  }, [getEntry]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -19,17 +38,14 @@ const AddEntry = () => {
     });
   };
 
-  const [addEntry, { isLoading }] = useAddEntryMutation();
-  const navigate = useNavigate();
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await addEntry(formData).unwrap();
+      const response = await updateEntry({ id, data: formData }).unwrap();
       navigate("/entries");
       toast.success(response.message);
     } catch (error) {
-      toast.error(error.data?.message || "An error occurred");
+      toast.error("Error");
     }
   };
 
@@ -39,7 +55,7 @@ const AddEntry = () => {
         <div className="card card-xl bg-base-200 w-full max-w-sm rounded-2xl shadow-xl hover:shadow-2xl">
           <div className="card-body">
             <h2 className="card-title block text-center text-lg mb-2">
-              Add New Entry
+              Edit Entry
             </h2>
             <form onSubmit={handleSubmit}>
               <div className="text-sm">
@@ -110,7 +126,7 @@ const AddEntry = () => {
                   className="btn btn-primary w-full rounded-lg my-3"
                   disabled={isLoading}
                 >
-                  {isLoading ? "Saving..." : "Save Entry"}
+                  {isLoading ? "Saving..." : "Save Changes"}
                 </button>
               </div>
             </form>
@@ -120,5 +136,4 @@ const AddEntry = () => {
     </div>
   );
 };
-
-export default AddEntry;
+export default EditEntry;
