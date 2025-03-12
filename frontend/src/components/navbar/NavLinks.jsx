@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { FaHome, FaBookOpen, FaPencilAlt, FaInfo } from "react-icons/fa";
+import { FaHome, FaBookOpen, FaInfo } from "react-icons/fa";
 
 const NavLinks = () => {
   return (
@@ -13,13 +13,7 @@ const NavLinks = () => {
       <li>
         <Link to="/entries">
           <FaBookOpen />
-          View Entries
-        </Link>
-      </li>
-      <li>
-        <Link to="/add-entry">
-          <FaPencilAlt />
-          Add Entry
+          Your Entries
         </Link>
       </li>
       <li>

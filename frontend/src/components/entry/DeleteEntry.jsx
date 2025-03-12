@@ -1,7 +1,7 @@
+import ModalLayout from "../ModalLayout";
 import { useState } from "react";
 import { FaTrashAlt } from "react-icons/fa";
-import ModalLayout from "./ModalLayout";
-import { useDeleteEntryMutation } from "../redux/api/entriesApiSlice";
+import { useDeleteEntryMutation } from "../../redux/api/entriesApiSlice";
 import { toast } from "react-toastify";
 
 const DeleteEntry = ({ id }) => {
@@ -27,7 +27,7 @@ const DeleteEntry = ({ id }) => {
       </p>
 
       <ModalLayout isOpen={open} close={() => setOpen(false)}>
-        <h1 className="font-semibold text-lg">
+        <h1 className="text-lg">
           Are you sure you want to delete this entry?
         </h1>
         <div className="modal-action">

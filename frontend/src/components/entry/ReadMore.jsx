@@ -1,5 +1,5 @@
 import { useState } from "react";
-import ModalLayout from "./ModalLayout";
+import ModalLayout from "../ModalLayout";
 
 const ReadMore = ({
   formattedDate,

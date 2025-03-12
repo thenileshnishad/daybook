@@ -1,11 +1,8 @@
-import { FaPencilAlt } from "react-icons/fa";
-import { useNavigate } from "react-router-dom";
 import ReadMore from "./ReadMore";
+import EditEntry from "./EditEntry";
 import DeleteEntry from "./DeleteEntry";
 
 const EntryCard = ({ id, date, title, mood, content, updatedAt }) => {
-  const navigate = useNavigate();
-
   const formattedDate = new Date(date).toLocaleDateString("default", {
     day: "numeric",
     month: "long",
@@ -19,19 +16,14 @@ const EntryCard = ({ id, date, title, mood, content, updatedAt }) => {
   });
 
   const contentLimit =
-    content.length > 215 ? `${content.slice(0, 215)}...` : content;
+    content.length > 300 ? `${content.slice(0, 300)}...` : content;
 
   return (
     <div className="card bg-base-200 w-100 h-70 shadow-xl hover:shadow-2xl rounded-3xl">
       <div className="flex justify-between items-center pt-4 px-3">
         <p className="text-sm">{formattedDate}</p>
         <div className="flex gap-2">
-          <p
-            className="text-success hover:cursor-pointer"
-            onClick={() => navigate(`/entries/${id}/edit`)}
-          >
-            <FaPencilAlt />
-          </p>
+          <EditEntry id={id} />
           <DeleteEntry id={id} />
         </div>
       </div>
