@@ -1,30 +1,13 @@
 import { useSelector } from "react-redux";
-import { useLogoutMutation } from "../../redux/api/usersApiSlice";
-import { removeUserInfo } from "../../redux/features/userSlice";
-import { useDispatch } from "react-redux";
-import { Link, useNavigate } from "react-router-dom";
-import { toast } from "react-toastify";
-
-import { FaChevronDown, FaUser, FaLock } from "react-icons/fa";
-import { IoLogOut } from "react-icons/io5";
+import { Link } from "react-router-dom";
+import { FaChevronDown, FaUser, FaSignOutAlt, FaLock } from "react-icons/fa";
+import ModalLayout from "../ModalLayout";
+import Logout from "../auth/Logout";
+import { useState } from "react";
 
 const NavProfile = () => {
   const user = useSelector((state) => state.user);
-  const [logout] = useLogoutMutation();
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
-
-  const handleLogout = async () => {
-    try {
-      const response = await logout().unwrap();
-      dispatch(removeUserInfo());
-      navigate("/");
-      toast.success(response.message);
-    } catch (error) {
-      console.error(error);
-      toast.error("Logout failed!");
-    }
-  };
+  const [openLogout, setOpenLogout] = useState(false);
 
   const handleDropDownClick = () => {
     const elem = document.activeElement;
@@ -57,8 +40,8 @@ const NavProfile = () => {
             </li>
             <div className="divider my-0"></div>
             <li onClick={handleDropDownClick}>
-              <button onClick={handleLogout}>
-                <IoLogOut />
+              <button onClick={() => setOpenLogout(true)}>
+                <FaSignOutAlt />
                 Log out
               </button>
             </li>
@@ -74,6 +57,10 @@ const NavProfile = () => {
           </Link>
         </>
       )}
+
+      <ModalLayout isOpen={openLogout} close={() => setOpenLogout(false)}>
+        <Logout close={() => setOpenLogout(false)} />
+      </ModalLayout>
     </>
   );
 };
