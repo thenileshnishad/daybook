@@ -4,7 +4,7 @@ const ModalLayout = ({ isOpen, close, children }) => {
       <div className="modal-box">
         <button
           onClick={close}
-          className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2"
+          className="btn btn-circle btn-ghost absolute right-2 top-2"
         >
           ✕
         </button>

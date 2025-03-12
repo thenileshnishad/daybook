@@ -1,6 +1,7 @@
 import { FaPencilAlt } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import ReadMore from "./ReadMore";
+import DeleteEntry from "./DeleteEntry";
 
 const EntryCard = ({ id, date, title, mood, content, updatedAt }) => {
   const navigate = useNavigate();
@@ -24,12 +25,15 @@ const EntryCard = ({ id, date, title, mood, content, updatedAt }) => {
     <div className="card bg-base-200 w-100 h-70 shadow-xl hover:shadow-2xl rounded-3xl">
       <div className="flex justify-between items-center pt-4 px-3">
         <p className="text-sm">{formattedDate}</p>
-        <p
-          className="hover:text-primary"
-          onClick={() => navigate(`/entries/${id}/edit`)}
-        >
-          <FaPencilAlt />
-        </p>
+        <div className="flex gap-2">
+          <p
+            className="text-success hover:cursor-pointer"
+            onClick={() => navigate(`/entries/${id}/edit`)}
+          >
+            <FaPencilAlt />
+          </p>
+          <DeleteEntry id={id} />
+        </div>
       </div>
 
       <div className="card-body p-4">

@@ -13,7 +13,7 @@ const ReadMore = ({
   return (
     <>
       <button
-        className="btn btn-sm btn-primary"
+        className="btn btn-sm btn-outline btn-primary"
         onClick={() => setOpen(true)}
       >
         Read More
