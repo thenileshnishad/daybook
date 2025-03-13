@@ -2,14 +2,16 @@ import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { FaChevronDown, FaUser, FaSignOutAlt, FaLock } from "react-icons/fa";
 import ModalLayout from "../ModalLayout";
-import Logout from "../auth/Logout";
 import { useState } from "react";
 import Profile from "../auth/Profile";
+import Password from "../auth/Password";
+import Logout from "../auth/Logout";
 
 const NavProfile = () => {
   const user = useSelector((state) => state.user);
-  const [openLogout, setOpenLogout] = useState(false);
   const [openProfile, setOpenProfile] = useState(false);
+  const [openPassword, setOpenPassword] = useState(false);
+  const [openLogout, setOpenLogout] = useState(false);
 
   const handleDropDownClick = () => {
     const elem = document.activeElement;
@@ -35,10 +37,10 @@ const NavProfile = () => {
             </li>
             <div className="divider m-0"></div>
             <li onClick={handleDropDownClick}>
-              <Link to="/change-password">
+              <button onClick={() => setOpenPassword(true)}>
                 <FaLock />
                 Change Password
-              </Link>
+              </button>
             </li>
             <div className="divider my-0"></div>
             <li onClick={handleDropDownClick}>
@@ -60,12 +62,16 @@ const NavProfile = () => {
         </>
       )}
 
-      <ModalLayout isOpen={openLogout} close={() => setOpenLogout(false)}>
-        <Logout close={() => setOpenLogout(false)} />
-      </ModalLayout>
-
       <ModalLayout isOpen={openProfile} close={() => setOpenProfile(false)}>
         <Profile close={() => setOpenProfile(false)} />
+      </ModalLayout>
+
+      <ModalLayout isOpen={openPassword} close={() => setOpenPassword(false)}>
+        <Password close={() => setOpenPassword(false)} />
+      </ModalLayout>
+
+      <ModalLayout isOpen={openLogout} close={() => setOpenLogout(false)}>
+        <Logout close={() => setOpenLogout(false)} />
       </ModalLayout>
     </>
   );

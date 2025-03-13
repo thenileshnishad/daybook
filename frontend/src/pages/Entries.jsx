@@ -1,8 +1,15 @@
+import { useSelector } from "react-redux";
+import { Navigate } from "react-router-dom";
 import { useGetEntriesQuery } from "../redux/api/entriesApiSlice";
 import EntryCard from "../components/entry/EntryCard";
 import AddEntry from "../components/entry/AddEntry";
 
 const Entries = () => {
+  const user = useSelector((state) => state.user);
+  if (!user) {
+    return <Navigate to="/login" replace />;
+  }
+
   const { data: getEntries, isLoading } = useGetEntriesQuery();
 
   if (isLoading) {

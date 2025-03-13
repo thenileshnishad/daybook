@@ -8,10 +8,8 @@ import Layout from "./components/Layout";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
-import About from "./pages/About";
-import PrivateRoute from "./components/PrivateRoute";
 import Entries from "./pages/Entries";
-import ChangePassword from "./pages/ChangePassword";
+import About from "./pages/About";
 
 const App = () => {
   return (
@@ -23,12 +21,8 @@ const App = () => {
             <Route index element={<Home />} />
             <Route path="login" element={<Login />} />
             <Route path="signup" element={<Signup />} />
+            <Route path="entries" element={<Entries />} />
             <Route path="about" element={<About />} />
-
-            <Route element={<PrivateRoute />}>
-              <Route path="entries" element={<Entries />} />
-              <Route path="change-password" element={<ChangePassword />} />
-            </Route>
           </Route>
         </Routes>
       </BrowserRouter>
