@@ -66,13 +66,13 @@ const EditEntry = ({ id }) => {
 
           <form onSubmit={handleSubmit}>
             <div>
-              <label htmlFor="title">
+              <label htmlFor={`title.${id}`}>
                 Entry Title <span className="text-red-500">*</span>
               </label>
               <input
                 type="text"
                 name="title"
-                id="title"
+                id={`title.${id}`}
                 value={formData.title}
                 onChange={handleChange}
                 className="input w-full rounded-lg my-3"
@@ -83,13 +83,13 @@ const EditEntry = ({ id }) => {
 
             <div className="flex gap-5 justify-center items-center">
               <div>
-                <label htmlFor="date">
+                <label htmlFor={`date.${id}`}>
                   Select Date <span className="text-red-500">*</span>
                 </label>
                 <input
                   type="date"
                   name="date"
-                  id="date"
+                  id={`date.${id}`}
                   value={formData.date}
                   onChange={handleChange}
                   className="input rounded-lg my-3"
@@ -97,13 +97,13 @@ const EditEntry = ({ id }) => {
               </div>
 
               <div>
-                <label htmlFor="mood">
+                <label htmlFor={`mood.${id}`}>
                   Your Mood <span className="text-red-500">*</span>
                 </label>
 
                 <select
                   name="mood"
-                  id="mood"
+                  id={`mood.${id}`}
                   value={formData.mood}
                   onChange={handleChange}
                   className="select rounded-lg my-3"
@@ -116,12 +116,12 @@ const EditEntry = ({ id }) => {
             </div>
 
             <div>
-              <label htmlFor="content">
+              <label htmlFor={`content.${id}`}>
                 Describe Your Day <span className="text-red-500">*</span>
               </label>
               <textarea
                 name="content"
-                id="content"
+                id={`content.${id}`}
                 value={formData.content}
                 onChange={handleChange}
                 className="textarea w-full rounded-lg my-3 h-50"

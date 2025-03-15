@@ -1,9 +1,15 @@
 import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 import { useSignupMutation } from "../redux/api/usersApiSlice";
 import { toast } from "react-toastify";
+import { useSelector } from "react-redux";
 
 const Signup = () => {
+  const user = useSelector((state) => state.user);
+  if (user) {
+    return <Navigate to="/" replace />;
+  }
+
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -27,7 +33,7 @@ const Signup = () => {
       navigate("/login");
       toast.success(`Signed up successfully, ${response.user.firstName}`);
     } catch (error) {
-      toast.info(error.data.message);
+      toast.error(error?.data?.message || "An unexpected error occurred!");
     }
   };
 
@@ -61,6 +67,7 @@ const Signup = () => {
                     onChange={handleChange}
                     name="firstName"
                     value={formData.firstName}
+                    required
                   />
                 </div>
 
@@ -70,7 +77,7 @@ const Signup = () => {
                     id="lastname"
                     type="text"
                     className="input w-full rounded-lg my-3"
-                    placeholder="Enter your last name"
+                    placeholder="Optional"
                     onChange={handleChange}
                     name="lastName"
                     value={formData.lastName}
@@ -89,6 +96,8 @@ const Signup = () => {
                     onChange={handleChange}
                     name="email"
                     value={formData.email}
+                    required
+                    autoComplete="on"
                   />
                 </div>
 
@@ -104,6 +113,7 @@ const Signup = () => {
                     onChange={handleChange}
                     name="password"
                     value={formData.password}
+                    required
                   />
                 </div>
 

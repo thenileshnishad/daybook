@@ -1,11 +1,16 @@
 import { useState } from "react";
-import { Link, replace, useNavigate } from "react-router-dom";
+import { Link, Navigate, replace, useNavigate } from "react-router-dom";
 import { useLoginMutation } from "../redux/api/usersApiSlice";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { userInfo } from "../redux/features/userSlice";
 import { toast } from "react-toastify";
 
 const Login = () => {
+  const user = useSelector((state) => state.user);
+  if (user) {
+    return <Navigate to="/" replace />;
+  }
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const dispatch = useDispatch();
@@ -20,7 +25,7 @@ const Login = () => {
       navigate("/", replace);
       toast.success(`Welcome, ${response.data.firstName}`);
     } catch (error) {
-      toast.error(error.data.message);
+      toast.error(error?.data?.message || "An unexpected error occurred!");
     }
   };
 
@@ -53,6 +58,8 @@ const Login = () => {
                     placeholder="Enter email"
                     onChange={(e) => setEmail(e.target.value)}
                     value={email}
+                    required
+                    autoComplete="on"
                   />
                 </div>
 
@@ -67,6 +74,7 @@ const Login = () => {
                     placeholder="Password"
                     onChange={(e) => setPassword(e.target.value)}
                     value={password}
+                    required
                   />
                 </div>
 
