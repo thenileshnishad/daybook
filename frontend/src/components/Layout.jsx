@@ -31,11 +31,9 @@ const Layout = () => {
   return (
     <div className="drawer">
       <input id="my-drawer-3" type="checkbox" className="drawer-toggle" />
-      <div className="drawer-content flex flex-col min-h-screen">
+      <div className="drawer-content">
         <Navbar />
-        <main className="flex-1">
-          <Outlet />
-        </main>
+        <Outlet />
         <Footer />
       </div>
 

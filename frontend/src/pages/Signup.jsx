@@ -32,7 +32,15 @@ const Signup = () => {
   };
 
   return (
-    <div className="min-h-[calc(100vh-64px-52px-40px)]">
+    <div className="min-h-[calc(100svh-64px-52px-40px)]">
+      <div className="my-10">
+        <p className="text-lg font-semibold text-center">
+          Create your DayBook account
+        </p>
+        <p className="text-lg font-semibold text-center">
+          and stay organized effortlessly.
+        </p>
+      </div>
       <div className="flex justify-center px-7 my-10">
         <div className="card card-xl bg-base-200 w-full max-w-sm rounded-2xl shadow-xl hover:shadow-2xl">
           <div className="card-body">
