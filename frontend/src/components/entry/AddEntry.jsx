@@ -38,9 +38,9 @@ const AddEntry = () => {
     <>
       <button
         onClick={() => setOpen(true)}
-        className="btn btn-circle text-2xl w-16 h-16 hover:shadow-2xl text-primary"
+        className="btn btn-circle w-16 h-16 bg-primary text-white hover:scale-105 animate-bounce hover:cursor-pointer"
       >
-        <FaPlus />
+        <FaPlus className="text-3xl" />
       </button>
 
       <ModalLayout isOpen={open} close={() => setOpen(false)}>

@@ -17,7 +17,7 @@ const Home = () => {
             Get Started
           </Link>
         </div>
-        <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce">
+        <div className="absolute bottom-10 animate-bounce">
           <span className="text-gray-500 text-sm">
             Scroll down to discover more ↓
           </span>
@@ -75,9 +75,9 @@ const Home = () => {
                 <div className="p-4 bg-base-100 shadow-lg rounded-lg">
                   <h4 className="text-lg font-semibold">Entry Management</h4>
                   <p className="text-gray-500">
-                    Easily add, edit, and delete entries while keeping
-                    your thoughts organized. You can also set or change entry
-                    dates anytime.
+                    Easily add, edit, and delete entries while keeping your
+                    thoughts organized. You can also set or change entry dates
+                    anytime.
                   </p>
                 </div>
                 <div className="p-4 bg-base-100 shadow-lg rounded-lg">
