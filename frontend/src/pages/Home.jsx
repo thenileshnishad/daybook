@@ -1,21 +1,46 @@
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const Home = () => {
+  const user = useSelector((state) => state.user);
+
   return (
     <div>
       <div className="flex justify-center items-center min-h-[calc(100svh-64px-40px)] relative">
         <div className="text-center py-10 max-w-3xl mx-auto">
-          <h1 className="text-5xl font-bold text-primary">
-            Welcome to DayBook
-          </h1>
-          <p className="text-lg mt-4">
-            DayBook is your private space to write and reflect. Journaling helps
-            clear your mind, track your thoughts, and grow every day. Start your
-            journey with a simple and secure way to record your daily moments.
-          </p>
-          <Link to="/entries" className="btn btn-primary mt-6">
-            Get Started
-          </Link>
+          {user ? (
+            <>
+              <h1 className="text-5xl font-bold text-primary">
+                Welcome Back, {user.data.firstName}
+              </h1>
+              <p className="text-lg mt-4">
+                Hey hey! It's great to have you here again! Your entries are
+                securely stored, private, and always available whenever you need
+                them. There's no right or wrong way to write just be yourself.
+                Keep writing, keep reflecting, and continue your journey toward
+                self-discovery and personal growth.
+              </p>
+              <Link to="/entries" className="btn btn-primary mt-6">
+                Go to Your Entries
+              </Link>
+            </>
+          ) : (
+            <>
+              <h1 className="text-5xl font-bold text-primary">
+                Welcome to DayBook
+              </h1>
+              <p className="text-lg mt-4">
+                Have you ever wanted a private space to organize your thoughts,
+                reflect on your day, and track your progress in life? There's no
+                right or wrong way to write just be yourself. So start writing
+                your journey today and build a habit that will transform the way
+                you think and reflect.
+              </p>
+              <Link to="/entries" className="btn btn-primary mt-6">
+                Get Started
+              </Link>
+            </>
+          )}
         </div>
         <div className="absolute bottom-10 animate-bounce">
           <span className="text-gray-500 text-sm">
@@ -24,30 +49,31 @@ const Home = () => {
         </div>
       </div>
 
-      <div className="flex justify-center items-center">
+      <div className="flex justify-center items-center min-h-[calc(100svh-64px-40px)]">
         <div className="mt-16 max-w-5xl mx-auto">
-          <h2 className="text-3xl font-bold text-center pb-5">
+          <h2 className="text-3xl font-bold text-center pb-2">
             Working & Key Features
           </h2>
 
-          <div className="grid md:grid-cols-2 gap-10 mt-10">
+          <div className="grid md:grid-cols-2 gap-10 my-10">
             <div>
               <h3 className="text-xl font-semibold text-center md:text-left">
-                Getting Started is Easy
+                Getting Started is Simple
               </h3>
               <div className="mt-6 space-y-6">
                 <div className="p-4 bg-base-100 shadow-lg rounded-lg">
                   <h4 className="text-lg font-semibold">1. Sign Up</h4>
                   <p className="text-gray-500">
-                    Create an account and log in securely. Enjoy a hassle-free
-                    sign-up process.
+                    Create a free account to start your journey. Your data is
+                    securely stored, ensuring your private thoughts remain
+                    personal.
                   </p>
                 </div>
                 <div className="p-4 bg-base-100 shadow-lg rounded-lg">
                   <h4 className="text-lg font-semibold">2. Start Writing</h4>
                   <p className="text-gray-500">
-                    Add, edit, and delete entries effortlessly. Capture thoughts
-                    seamlessly and revisit them anytime.
+                    Write freely without limitations. Capture your emotions and
+                    document important events, and revisit them anytime.
                   </p>
                 </div>
                 <div className="p-4 bg-base-100 shadow-lg rounded-lg">
@@ -62,14 +88,14 @@ const Home = () => {
 
             <div>
               <h3 className="text-xl font-semibold text-center md:text-left">
-                Powerful Features
+                Features Designed for You
               </h3>
               <div className="mt-6 space-y-6">
                 <div className="p-4 bg-base-100 shadow-lg rounded-lg">
                   <h4 className="text-lg font-semibold">Daily Journaling</h4>
                   <p className="text-gray-500">
-                    Write and reflect on your daily experiences effortlessly,
-                    creating a rich record of your journey.
+                    Develop a daily habit of writing and reflecting. The more
+                    you write, the more you understand yourself.
                   </p>
                 </div>
                 <div className="p-4 bg-base-100 shadow-lg rounded-lg">
@@ -90,20 +116,6 @@ const Home = () => {
               </div>
             </div>
           </div>
-        </div>
-      </div>
-
-      <div className="flex justify-center items-center">
-        <div className="text-center my-10">
-          <h2 className="text-3xl font-bold">Start Your Journey Today</h2>
-          <p className="mt-4 text-lg">
-            Begin your journey with DayBook, your personal space to write and
-            reflect. Create a habit of journaling and take control of your daily
-            thoughts and tasks.
-          </p>
-          <Link to="/signup" className="btn btn-primary mt-6">
-            Sign Up Now
-          </Link>
         </div>
       </div>
     </div>

@@ -7,15 +7,15 @@ import { toast } from "react-toastify";
 
 const Login = () => {
   const user = useSelector((state) => state.user);
-  if (user) {
-    return <Navigate to="/" replace />;
-  }
-
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [login, { isLoading }] = useLoginMutation();
+
+  if (user) {
+    return <Navigate to="/" replace />;
+  }
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -23,7 +23,7 @@ const Login = () => {
       const response = await login({ email, password }).unwrap();
       dispatch(userInfo(response));
       navigate("/", replace);
-      toast.success(`Welcome, ${response.data.firstName}`);
+      toast.success(`Welcome back, ${response.data.firstName}`);
     } catch (error) {
       toast.error(error?.data?.message || "An unexpected error occurred!");
     }
