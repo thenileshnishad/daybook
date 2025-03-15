@@ -68,9 +68,12 @@ const signup = async (req, res) => {
       password: hashedPassword,
     });
 
+    generateToken(user._id, res);
+
     res.status(201).json({
-      message: "User signed up successfully!",
-      user: {
+      message: "Signed up successfully and logged you in!",
+      data: {
+        _id: user._id,
         email: user.email,
         firstName: user.firstName,
         lastName: user.lastName,
