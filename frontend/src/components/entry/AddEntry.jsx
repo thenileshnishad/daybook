@@ -1,5 +1,5 @@
 import ModalLayout from "../ModalLayout";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { FaPlus } from "react-icons/fa";
 import { useAddEntryMutation } from "../../redux/api/entriesApiSlice";
 import { toast } from "react-toastify";
@@ -14,6 +14,16 @@ const AddEntry = () => {
     content: "",
     date: new Date().toISOString().slice(0, 10),
   });
+
+  useEffect(() => {
+    const initialData = {
+      title: "",
+      mood: "🙂",
+      content: "",
+      date: new Date().toISOString().slice(0, 10),
+    };
+    setFormData(initialData);
+  }, [open]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;

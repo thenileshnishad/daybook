@@ -18,6 +18,11 @@ const Password = ({ close }) => {
     }
   }, [user]);
 
+  useEffect(() => {
+    setOldPassword("");
+    setNewPassword("");
+  }, [close]);
+
   const [changePassword, { isLoading }] = useChangePasswordMutation();
 
   const handleSubmit = async (e) => {
@@ -62,6 +67,7 @@ const Password = ({ close }) => {
               value={oldPassword}
               onChange={(e) => setOldPassword(e.target.value)}
               className="input rounded-lg my-3"
+              placeholder="Current password"
             />
           </div>
 
@@ -76,6 +82,7 @@ const Password = ({ close }) => {
               value={newPassword}
               onChange={(e) => setNewPassword(e.target.value)}
               className="input rounded-lg my-3"
+              placeholder="New password"
             />
           </div>
         </div>

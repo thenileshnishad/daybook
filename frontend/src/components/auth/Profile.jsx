@@ -16,7 +16,7 @@ const Profile = ({ close }) => {
       setFirstName(user?.data?.firstName);
       setLastName(user?.data?.lastName);
     }
-  }, [user]);
+  }, [user, close]);
 
   const [updateProfile, { isLoading }] = useUpdateProfileMutation();
   const handleSubmit = async (e) => {
@@ -59,6 +59,7 @@ const Profile = ({ close }) => {
               value={firstName}
               onChange={(e) => setFirstName(e.target.value)}
               className="input rounded-lg my-3"
+              placeholder="Enter your first name"
             />
           </div>
 
@@ -71,6 +72,7 @@ const Profile = ({ close }) => {
               value={lastName}
               onChange={(e) => setLastName(e.target.value)}
               className="input rounded-lg my-3"
+              placeholder="Optional"
             />
           </div>
         </div>

@@ -36,7 +36,7 @@ const EditEntry = ({ id }) => {
         date: new Date(getEntry.data?.date).toISOString().slice(0, 10) || "",
       });
     }
-  }, [getEntry]);
+  }, [getEntry, open]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
