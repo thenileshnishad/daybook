@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import NavLinks from "./NavLinks";
 import ThemeController from "../ThemeController";
 import NavProfile from "./NavProfile";
+import SearchBox from "./SearchBox";
 
 const Navbar = () => {
   return (
@@ -40,6 +41,9 @@ const Navbar = () => {
       </div>
 
       <div className="navbar-end gap-2">
+        <div className="hidden md:flex">
+          <SearchBox />
+        </div>
         <ThemeController />
         <NavProfile />
       </div>

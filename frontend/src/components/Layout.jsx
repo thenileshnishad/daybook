@@ -7,6 +7,7 @@ import { useDispatch } from "react-redux";
 import { removeUserInfo, userInfo } from "../redux/features/userSlice";
 import Loader from "./Loader";
 import NavLinks from "./navbar/NavLinks";
+import SearchBox from "./navbar/SearchBox";
 
 const Layout = () => {
   const { data: profile, isError, isLoading } = useProfileQuery();
@@ -52,6 +53,7 @@ const Layout = () => {
           className="drawer-overlay"
         ></label>
         <ul className="menu bg-base-200 min-h-screen w-80 p-4">
+          <SearchBox toggle={toggle} />
           <NavLinks toggle={toggle} />
         </ul>
       </div>
