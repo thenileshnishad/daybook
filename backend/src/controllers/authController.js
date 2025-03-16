@@ -5,40 +5,36 @@ const generateToken = require("../utils/generateToken");
 
 const signup = async (req, res) => {
   try {
-    const { email, firstName, lastName, password } = req.body;
+    let { email } = req.body;
+    email = email.trim().toLowerCase();
+    const { firstName, lastName, password } = req.body;
 
     if (!email || !firstName || !password) {
       return res.status(400).json({ message: "Fill all required fields!" });
     }
-
     if (!validator.isEmail(email)) {
       return res.status(422).json({ message: "Invalid email format!" });
     }
-
     if (email.length > 50) {
       return res
         .status(422)
         .json({ message: "Email cannot exceed 50 characters!" });
     }
-
     if (firstName.length > 50) {
       return res
         .status(422)
         .json({ message: "First name cannot exceed 50 characters!" });
     }
-
     if (lastName && lastName.length > 50) {
       return res
         .status(422)
         .json({ message: "Last name cannot exceed 50 characters!" });
     }
-
     if (password.length > 100) {
       return res
         .status(422)
         .json({ message: "Password cannot exceed 100 characters!" });
     }
-
     if (
       !validator.isStrongPassword(password, {
         minLength: 8,
@@ -52,7 +48,6 @@ const signup = async (req, res) => {
     }
 
     const userExist = await User.findOne({ email });
-
     if (userExist) {
       return res.status(422).json({
         message: "User already exist!",
@@ -60,7 +55,6 @@ const signup = async (req, res) => {
     }
 
     const hashedPassword = await bcrypt.hash(password, 10);
-
     const user = await User.create({
       email,
       firstName,
@@ -69,7 +63,6 @@ const signup = async (req, res) => {
     });
 
     generateToken(user._id, res);
-
     res.status(201).json({
       message: "Signed up successfully and logged you in!",
       data: {
@@ -89,7 +82,9 @@ const signup = async (req, res) => {
 
 const login = async (req, res) => {
   try {
-    const { email, password } = req.body;
+    let { email } = req.body;
+    email = email.trim().toLowerCase();
+    const { password } = req.body;
 
     const user = await User.findOne({ email });
     if (!user) {
@@ -143,7 +138,9 @@ const changePassword = async (req, res) => {
     if (!passwordCompare) {
       return res.status(401).json({ message: "Old Password is incorrect!" });
     }
-
+    if (await bcrypt.compare(newPassword, loggedUser.password)) {
+      return res.status(422).json({ message: "New password must differ!" });
+    }
     if (
       !validator.isStrongPassword(newPassword, {
         minLength: 8,
