@@ -1,22 +1,22 @@
 import { Link } from "react-router-dom";
 import { FaHome, FaBookOpen, FaInfo } from "react-icons/fa";
 
-const NavLinks = () => {
+const NavLinks = ({ toggle }) => {
   return (
     <>
-      <li>
+      <li onClick={toggle}>
         <Link to="/">
           <FaHome />
           Home
         </Link>
       </li>
-      <li>
+      <li onClick={toggle}>
         <Link to="/entries">
           <FaBookOpen />
           Your Entries
         </Link>
       </li>
-      <li>
+      <li onClick={toggle}>
         <Link to="/about">
           <FaInfo />
           About

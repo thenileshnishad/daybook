@@ -12,6 +12,8 @@ const Layout = () => {
   const { data: profile, isError, isLoading } = useProfileQuery();
   const dispatch = useDispatch();
   const [isReady, setIsReady] = useState(false);
+  const [isDrawerOpen, setIsDrawerOpen] = useState(false);
+  const toggle = () => setIsDrawerOpen(!isDrawerOpen);
 
   useEffect(() => {
     if (!isLoading) {
@@ -30,7 +32,13 @@ const Layout = () => {
 
   return (
     <div className="drawer">
-      <input id="my-drawer-3" type="checkbox" className="drawer-toggle" />
+      <input
+        id="my-drawer-3"
+        type="checkbox"
+        className="drawer-toggle"
+        checked={isDrawerOpen}
+        onChange={toggle}
+      />
       <div className="drawer-content">
         <Navbar />
         <Outlet />
@@ -44,7 +52,7 @@ const Layout = () => {
           className="drawer-overlay"
         ></label>
         <ul className="menu bg-base-200 min-h-screen w-80 p-4">
-          <NavLinks />
+          <NavLinks toggle={toggle} />
         </ul>
       </div>
     </div>
