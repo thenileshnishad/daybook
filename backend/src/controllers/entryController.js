@@ -5,6 +5,11 @@ const createEntry = async (req, res) => {
   const { date, mood, title, content } = req.body;
   const loggedUser = req.user;
 
+  if (!title || !content || !mood)
+    return res
+      .status(422)
+      .json({ message: "Please submit with required fields!" });
+
   if (!validator.isDate(date)) {
     return res.status(422).json({
       message: "Please provide a valid date!",
@@ -96,6 +101,11 @@ const updateEntry = async (req, res) => {
   const entryId = req.params.id;
   const { date, title, mood, content } = req.body;
 
+  if (!title || !content || !mood)
+    return res
+      .status(422)
+      .json({ message: "Please submit with required fields!" });
+
   if (!validator.isDate(date)) {
     return res.status(422).json({
       message: "Please provide a valid date!",
@@ -169,6 +179,16 @@ const searchEntries = async (req, res) => {
   const loggedUser = req.user;
   const queryText = req.query.text;
 
+  if (!queryText?.trim()) {
+    return res.status(400).json({ message: "Search text is required!" });
+  }
+
+  if (queryText.length > 100) {
+    return res
+      .status(422)
+      .json({ message: "Search string cannot be exceed 100 charactere!" });
+  }
+
   try {
     const entries = await Entry.find({
       $and: [
@@ -182,15 +202,13 @@ const searchEntries = async (req, res) => {
       ],
     });
 
-    if (entries.length === 0) {
-      return res
-        .status(404)
-        .json({ message: "No entries found matching your search!" });
-    }
-
-    res
-      .status(200)
-      .json({ message: "Entries fetched successfully!", data: entries });
+    res.status(200).json({
+      message:
+        entries.length === 0
+          ? "No entries found!"
+          : "Entries fetched successfully!",
+      data: entries,
+    });
   } catch (error) {
     console.error("Error searching the entry!", error);
     res.status(500).json({
