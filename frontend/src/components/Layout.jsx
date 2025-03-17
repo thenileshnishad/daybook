@@ -1,5 +1,5 @@
 import Navbar from "./navbar/Navbar";
-import { Outlet } from "react-router-dom";
+import { Link, Outlet } from "react-router-dom";
 import Footer from "./Footer";
 import { useEffect, useState } from "react";
 import { useProfileQuery } from "../redux/api/usersApiSlice";
@@ -8,6 +8,7 @@ import { removeUserInfo, userInfo } from "../redux/features/userSlice";
 import Loader from "./Loader";
 import NavLinks from "./navbar/NavLinks";
 import SearchBox from "./navbar/SearchBox";
+import logo from "../assets/logo.svg";
 
 const Layout = () => {
   const { data: profile, isError, isLoading } = useProfileQuery();
@@ -53,6 +54,16 @@ const Layout = () => {
           className="drawer-overlay"
         ></label>
         <ul className="menu bg-base-200 min-h-screen w-80 p-4">
+          <div className="py-4 pb-5">
+            <Link
+              className="btn btn-ghost text-2xl p-0"
+              to="/"
+              onClick={toggle}
+            >
+              <img className="w-10 h-10" src={logo} alt="logo" />
+              DayBook
+            </Link>
+          </div>
           <SearchBox toggle={toggle} />
           <NavLinks toggle={toggle} />
         </ul>

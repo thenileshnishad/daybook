@@ -3,6 +3,7 @@ import NavLinks from "./NavLinks";
 import ThemeController from "../ThemeController";
 import NavProfile from "./NavProfile";
 import SearchBox from "./SearchBox";
+import logo from "../../assets/logo.svg";
 
 const Navbar = () => {
   return (
@@ -29,9 +30,10 @@ const Navbar = () => {
             </svg>
           </label>
         </div>
-        <div className="flex-1 pl-3">
-          <Link to="/">DayBook</Link>
-        </div>
+        <Link className="btn btn-ghost text-xl pl-0" to="/">
+          <img className="w-10 h-10" src={logo} alt="logo" />
+          DayBook
+        </Link>
       </div>
 
       <div className="navbar-center hidden flex-none lg:block">

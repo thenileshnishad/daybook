@@ -1,0 +1,17 @@
+<svg width="200" height="200" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+  <!-- Outer circle with white fill and a thick #605dff border -->
+  <circle cx="100" cy="100" r="90" fill="#ffffff" stroke="#605dff" stroke-width="20" />
+  
+  <!-- "DB" text in #605dff using Montserrat font, centered, italicized, and underlined -->
+  <text x="100" y="100"
+        text-anchor="middle"
+        dominant-baseline="middle"
+        fill="#605dff"
+        font-family="Montserrat, sans-serif"
+        font-size="90"
+        font-weight="bold"
+        font-style="italic"
+        style="text-decoration: underline;">
+    DB
+  </text>
+</svg>
