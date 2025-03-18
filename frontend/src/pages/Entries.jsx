@@ -28,9 +28,11 @@ const Entries = () => {
     });
 
   if (isLoadingEntries || isLoadingSearch) {
-    <div className="min-h-100svh">
-      return <Loader />
-    </div>;
+    return (
+      <div className="flex justify-center items-center min-h-[calc(100dvh-64px-52px)]">
+        <Loader />
+      </div>
+    );
   }
 
   const entries =
@@ -41,8 +43,8 @@ const Entries = () => {
       return (
         <div className="text-center mt-10 mx-7 min-h-[calc(100svh-64px-52px-40px)]">
           <p className="text-2xl font-semibold mb-2">
-            Sorry, {user.data.firstName}, I couldn't find any entries matching
-            your search!
+            Sorry {user.data.firstName}, I couldn't find any entries matching
+            your search query!
           </p>
           <p className="text-lg">
             It looks like there are no entries that match your search criteria.
@@ -79,7 +81,7 @@ const Entries = () => {
       <div className="fixed bottom-20 z-10 left-[calc(100vw-7rem)]">
         <AddEntry />
       </div>
-      <div className="flex flex-wrap gap-10 justify-center mt-10 min-h-[calc(100svh-64px-52px-40px)] mx-7">
+      <div className="flex flex-wrap gap-10 justify-center my-10 min-h-[calc(100svh-64px-52px-40px)] mx-7">
         {entries.map((entry) => (
           <EntryCard
             key={entry._id}

@@ -29,7 +29,11 @@ const Layout = () => {
   }, [profile, dispatch, isError, isLoading]);
 
   if (!isReady) {
-    return <Loader />;
+    return (
+      <div className="flex justify-center items-center min-h-screen">
+        <Loader />
+      </div>
+    );
   }
 
   return (
