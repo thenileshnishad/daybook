@@ -30,7 +30,7 @@ const Layout = () => {
 
   if (!isReady) {
     return (
-      <div className="flex justify-center items-center min-h-screen">
+      <div className="flex justify-center items-center min-h-[calc(100svh)]">
         <Loader />
       </div>
     );
