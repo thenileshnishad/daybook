@@ -7,18 +7,16 @@ const Home = () => {
   return (
     <div>
       <div className="flex justify-center items-center min-h-[calc(100svh-64px-40px)] relative">
-        <div className="text-center py-10 max-w-3xl mx-auto">
+        <div className="text-center py-10 max-w-3xl mx-4">
           {user ? (
             <>
-              <h1 className="text-5xl font-bold text-primary">
+              <h1 className="text-3xl xl:text-5xl font-bold text-primary">
                 Welcome Back, {user.data.firstName}
               </h1>
               <p className="text-lg mt-4">
-                Hey hey! It's great to have you here again! Your entries are
-                securely stored, private, and always available whenever you need
-                them. There's no right or wrong way to write just be yourself.
-                Keep writing, keep reflecting, and continue your journey toward
-                self-discovery and personal growth.
+                Hey! Great to have you back 😊 Your entries are safe, private,
+                and always within reach. No rules just your thoughts, your way.
+                Keep writing, keep growing! 🚀✨
               </p>
               <Link to="/entries" className="btn btn-primary mt-6">
                 Go to Your Entries
@@ -26,15 +24,13 @@ const Home = () => {
             </>
           ) : (
             <>
-              <h1 className="text-5xl font-bold text-primary">
+              <h1 className="text-3xl xl:text-5xl font-bold text-primary">
                 Welcome to DayBook
               </h1>
               <p className="text-lg mt-4">
-                Have you ever wanted a private space to organize your thoughts,
-                reflect on your day, and track your progress in life? There's no
-                right or wrong way to write just be yourself. So start writing
-                your journey today and build a habit that will transform the way
-                you think and reflect.
+                Hey! Great to have you here 😊 Log in to keep your entries safe,
+                private, and always within reach. Write freely, your thoughts
+                your way! 🚀✨
               </p>
               <Link to="/entries" className="btn btn-primary mt-6">
                 Get Started
