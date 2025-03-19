@@ -53,10 +53,9 @@ const getEntries = async (req, res) => {
   const loggedUser = req.user;
 
   try {
-    const entries = await Entry.find({ createdBy: loggedUser._id }).populate(
-      "createdBy",
-      "firstName lastName"
-    );
+    const entries = await Entry.find({ createdBy: loggedUser._id })
+      .populate("createdBy", "firstName lastName")
+      .sort({ date: -1 });
 
     res
       .status(200)
@@ -200,7 +199,7 @@ const searchEntries = async (req, res) => {
         },
         { createdBy: loggedUser._id },
       ],
-    });
+    }).sort({ date: -1 });
 
     res.status(200).json({
       message:
