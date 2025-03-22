@@ -4,22 +4,24 @@ DayBook is a secure and user-friendly personal journaling app built with the MER
 
 [Live Demo](https://daybook-mern.vercel.app)
 
+Head over to the [Vercel deployment branch](https://github.com/thenileshnishad/daybook/tree/deployment) if you want to see how the deployment is set up (you can find the relevant details in their `package.json` file).
+
 ---
 
 ## 📚 Table of Contents
 
-- [**✨ Features**](#-features)
-- [**⚙️ Tech Stack**](#️-tech-stack)
-- [**📂 Project Structure**](#-project-structure)
-- [**🛠️ Installation**](#️-installation)
-  - [**🧱 Backend Setup**](#-backend-setup)
-  - [**🖥️ Frontend Setup**](#️-frontend-setup)
-- [**🌐 API Endpoints**](#-api-endpoints)
-- [**🙏 Contributing**](#-contributing)
+1. [**Features**](#1-features)
+2. [**Tech Stack**](#2-tech-stack)
+3. [**Project Structure**](#3-project-structure)
+4. [**Installation**](#4-installation)
+   - [**Backend Setup**](#backend-setup)
+   - [**Frontend Setup**](#frontend-setup)
+5. [**API Endpoints**](#5-api-endpoints)
+6. [**Contributing**](#6-contributing)
 
 ---
 
-## ✨ features
+## 1. Features
 
 - **User Authentication:** Secure login and registration system.
 - **Journal Entries:** Create, read, update, and delete personal daily entries.
@@ -29,7 +31,7 @@ DayBook is a secure and user-friendly personal journaling app built with the MER
 
 ---
 
-## ⚙️ Tech Stack
+## 2. Tech Stack
 
 - **Frontend**: React.js with TailwindCSS & DaisyUI for modern, responsive UI design.
 - **Backend**: Node.js with Express.js for handling server-side logic and API requests.
@@ -40,7 +42,7 @@ DayBook is a secure and user-friendly personal journaling app built with the MER
 
 ---
 
-## 📂 Project Structure
+## 3. Project Structure
 
 The repository is divided into two main directories:
 
@@ -66,7 +68,6 @@ daybook/
 │   │   ├── utils/                          # Utility/helper functions
 │   │   │   └── generateToken.js            # To generate JSON Web Tokens (JWTs) and response cookies
 │   │   └── index.js                        # The main entry point for the Node.js server
-│   ├── .env                                # Environment variables (database URI, secrets)
 │   ├── .env.example                        # Example environment variable file
 │   ├── .gitignore                          # Specifies files and directories to be ignored by Git
 │   ├── package-lock.json                   # Records the exact versions of installed npm packages
@@ -117,7 +118,6 @@ daybook/
 │   │   ├── App.css                         # Global CSS styles
 │   │   ├── App.jsx                         # Main application component
 │   │   └── main.jsx                        # Entry point for the React application
-│   ├── .env                                # Environment variables for the frontend
 │   ├── .env.example                        # Example environment variable file for the frontend
 │   ├── .gitignore                          # Specifies files and directories to be ignored by Git
 │   ├── eslint.config.js                    # ESLint configuration file
@@ -133,17 +133,17 @@ daybook/
 
 ---
 
-## 🛠️ Installation
+## 4. Installation
 
 Follow these steps to set up the project locally:
 
 ### Prerequisites
 
 - [Git](https://git-scm.com/)
-- [Node.js](https://nodejs.org/) (any recent version with npm)
-- [MongoDB](https://www.mongodb.com/) (either locally installed or using a cloud service like MongoDB Atlas)
+- [Node.js](https://nodejs.org/)
+- [MongoDB](https://www.mongodb.com/)
 
-### 🧱 Backend Setup
+### Backend Setup
 
 1. **Clone the repository:**
 
@@ -167,11 +167,6 @@ Follow these steps to set up the project locally:
    PORT=3000
    MONGO_URI=mongodb://localhost:27017/daybook
    JWT_SECRET=rushB@5678
-   ```
-
-   **The following is not necessary, if you are going to run it locally.**
-
-   ```
    FRONTEND_URL=http://localhost:5173
    ```
 
@@ -183,7 +178,7 @@ Follow these steps to set up the project locally:
    npm run dev
    ```
 
-### 🖥️ Frontend Setup
+### Frontend Setup
 
 1. **Navigate to the root directory (daybook, not backend):**
 
@@ -197,7 +192,9 @@ Follow these steps to set up the project locally:
    npm install
    ```
 
-3. **Configure Environment Variables (Not necessary, if you are going to run it locally):**
+3. **Configure Environment Variable:**
+
+   Create a `.env` file in the `frontend` directory and set the variable accordingly:
 
    ```
    VITE_BACKEND_URL=http://localhost:3000
@@ -216,7 +213,7 @@ The app should now be running locally. `By default`:
 
 ---
 
-## 🌐 API Endpoints
+## 5. API Endpoints
 
 | **Method** | **Endpoint**                | **Description**                                                                                                                                                                                          |
 | :--------- | :-------------------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -235,7 +232,7 @@ The app should now be running locally. `By default`:
 
 ---
 
-## 🙏 Contributing
+## 6. Contributing
 
 Contributions are welcome! If you'd like to improve DayBook, please follow these steps:
 
@@ -259,5 +256,3 @@ Contributions are welcome! If you'd like to improve DayBook, please follow these
    ```
 
 5. Open a pull request detailing your changes.
-
-- I will go over your changes and integrate them into the main branch shortly :)
