@@ -91,6 +91,7 @@ const Entries = () => {
             mood={entry.mood}
             content={entry.content}
             updatedAt={entry.updatedAt}
+            highlightText={searchQuery}
           />
         ))}
       </div>
