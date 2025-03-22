@@ -41,7 +41,7 @@ const Entries = () => {
   if (entries.length === 0) {
     if (searchResult) {
       return (
-        <div className="text-center mt-10 mx-7 min-h-[calc(100svh-64px-52px-40px)]">
+        <div className="text-center mt-10 mx-7 min-h-[calc(100dvh-64px-52px-40px)]">
           <p className="text-2xl font-semibold mb-2">
             Sorry {user.data.firstName}, I couldn't find any entries matching
             your search query!
@@ -57,7 +57,7 @@ const Entries = () => {
       );
     } else {
       return (
-        <div className="text-center mt-10 mx-7 min-h-[calc(100svh-64px-52px-40px)]">
+        <div className="text-center mt-10 mx-7 min-h-[calc(100dvh-64px-52px-40px)]">
           <p className="text-2xl font-semibold mb-2">
             Welcome, {user.data.firstName}
           </p>
@@ -81,7 +81,7 @@ const Entries = () => {
       <div className="fixed bottom-20 z-10 left-[calc(100vw-7rem)]">
         <AddEntry />
       </div>
-      <div className="flex flex-wrap gap-10 justify-center my-10 min-h-[calc(100svh-64px-52px-40px)] mx-7">
+      <div className="flex flex-wrap gap-10 justify-center my-10 min-h-[calc(100dvh-64px-52px-80px)] mx-7">
         {entries.map((entry) => (
           <EntryCard
             key={entry._id}

@@ -30,7 +30,7 @@ const Login = () => {
   };
 
   return (
-    <div className="min-h-[calc(100svh-64px-52px-40px)]">
+    <div className="min-h-[calc(100dvh-64px-52px-40px)]">
       <div className="my-10">
         <p className="text-lg font-semibold text-center">
           Log in to access your account

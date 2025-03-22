@@ -29,8 +29,14 @@ const Layout = () => {
   }, [profile, dispatch, isError, isLoading]);
 
   if (!isReady) {
+    const getTheme = localStorage.getItem("theme")
+      ? localStorage.getItem("theme")
+      : "dark";
     return (
-      <div className="flex justify-center items-center min-h-[calc(100svh)]">
+      <div
+        data-theme={getTheme}
+        className="flex justify-center items-center min-h-[calc(100dvh)]"
+      >
         <Loader />
       </div>
     );
