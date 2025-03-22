@@ -12,6 +12,7 @@
   "dependencies": {
     "@reduxjs/toolkit": "^2.6.0",
     "@tailwindcss/vite": "^4.0.9",
+    "daybook-deployment": "file:..",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-icons": "^5.5.0",

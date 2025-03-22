@@ -12,8 +12,6 @@ DayBook is a secure and user-friendly personal journaling app built with the MER
 - [**⚙️ Tech Stack**](#️-tech-stack)
 - [**📂 Project Structure**](#-project-structure)
 - [**🛠️ Installation**](#️-installation)
-  - [**🧱 Backend Setup**](#-backend-setup)
-  - [**🖥️ Frontend Setup**](#️-frontend-setup)
 - [**🌐 API Endpoints**](#-api-endpoints)
 - [**🙏 Contributing**](#-contributing)
 
@@ -117,15 +115,15 @@ daybook/
 │   │   ├── App.css                         # Global CSS styles
 │   │   ├── App.jsx                         # Main application component
 │   │   └── main.jsx                        # Entry point for the React application
-│   ├── .env                                # Environment variables for the frontend
-│   ├── .env.example                        # Example environment variable file for the frontend
 │   ├── .gitignore                          # Specifies files and directories to be ignored by Git
 │   ├── eslint.config.js                    # ESLint configuration file
 │   ├── index.html                          # HTML entry point for the React application
 │   ├── package-lock.json                   # Records the exact versions of installed npm packages
 │   ├── package.json                        # Defines project metadata and dependencies
 │   └── vite.config.js                      # Vite build tool configuration
-└── README.md                               # Documentation about the project
+├── package.json                            # Buld and run scripts for daybook
+├── README.md                               # Documentation about the project
+└── vercel.json                             # Config file for deployment on vercel
 ```
 
 - **backend:** Contains all server-side code including API endpoints, middleware, and database connections.
@@ -135,7 +133,7 @@ daybook/
 
 ## 🛠️ Installation
 
-Follow these steps to set up the project locally:
+Follow below steps to set up the daybook project `locally`:
 
 ### Prerequisites
 
@@ -143,20 +141,20 @@ Follow these steps to set up the project locally:
 - [Node.js](https://nodejs.org/) (any recent version with npm)
 - [MongoDB](https://www.mongodb.com/) (either locally installed or using a cloud service like MongoDB Atlas)
 
-### 🧱 Backend Setup
+### Follow this:
 
 1. **Clone the repository:**
 
    ```bash
-   git clone https://github.com/thenileshnishad/daybook.git
-
-   cd daybook/backend
+   git clone --branch deployment --single-branch https://github.com/thenileshnishad/daybook.git
    ```
 
 2. **Install dependencies:**
 
+   dist and node_modules is important to start the project, so
+
    ```bash
-   npm install
+   npm run build
    ```
 
 3. **Configure Environment Variables:**
@@ -169,50 +167,13 @@ Follow these steps to set up the project locally:
    JWT_SECRET=rushB@5678
    ```
 
-   **The following is not necessary, if you are going to run it locally.**
-
-   ```
-   FRONTEND_URL=http://localhost:5173
-   ```
-
-4. **Start the backend server:**
+4. **Start the DayBook by navigating to the root directory (daybook) or backend directory fine too:**
 
    ```bash
    npm start
-   # or
-   npm run dev
    ```
 
-### 🖥️ Frontend Setup
-
-1. **Navigate to the root directory (daybook, not backend):**
-
-   ```bash
-   cd frontend
-   ```
-
-2. **Install dependencies:**
-
-   ```bash
-   npm install
-   ```
-
-3. **Configure Environment Variables (Not necessary, if you are going to run it locally):**
-
-   ```
-   VITE_BACKEND_URL=http://localhost:3000
-   ```
-
-4. **Start the React development server:**
-
-   ```bash
-   npm run dev
-   ```
-
-The app should now be running locally. `By default`:
-
-- The frontend runs on [http://localhost:5173](http://localhost:5173)
-- The backend runs on [http://localhost:3000](http://localhost:3000)
+The app should now be running locally, follow the link that shows on the console:
 
 ---
 
@@ -232,6 +193,7 @@ The app should now be running locally. `By default`:
 | PATCH      | `/api/entries/:id`          | Updates an existing entry specified by its ID. The request body must include the fields that need to be updated (date, title, mood, content). Only the owner of the entry can modify and see it.         |
 | DELETE     | `/api/entries/:id`          | Deletes the entry specified by its ID. Only the user who created the entry is authorized to delete or see it. The entry will be permanently removed from the database.                                   |
 | GET        | `/api/entries/search?text=` | Searches for entries that match the given search text in either the title or the description. The search query parameter text should contain the keyword(s) you want to search for.                      |
+| \*         | `/*`                        | All other requests with paths that do not start with /api should be redirected to the corresponding frontend pages, provided they exist.                                                                 |
 
 ---
 

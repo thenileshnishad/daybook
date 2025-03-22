@@ -1,0 +1,29 @@
+{
+  "name": "daybook-deployment",
+  "version": "1.0.0",
+  "description": "This branch is for deployment of daybook",
+  "keywords": [
+    "mern",
+    "daybook",
+    "journal",
+    "task",
+    "management",
+    "deployment"
+  ],
+  "homepage": "https://github.com/thenileshnishad/daybook#readme",
+  "bugs": {
+    "url": "https://github.com/thenileshnishad/daybook/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/thenileshnishad/daybook.git"
+  },
+  "license": "ISC",
+  "author": "Nilesh Kumar Nishad",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "build": "npm install --prefix frontend && npm run build --prefix frontend && npm install --prefix backend",
+    "start": "npm start --prefix backend"
+  }
+}
