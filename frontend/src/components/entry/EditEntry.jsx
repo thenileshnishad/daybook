@@ -9,8 +9,12 @@ import { toast } from "react-toastify";
 
 const EditEntry = ({ id }) => {
   const [open, setOpen] = useState(false);
-  const { data: getEntry } = useGetEntryQuery(id);
-  const [updateEntry, { isLoading }] = useUpdateEntryMutation();
+  const { data: getEntry, isLoading: entryLoading } = useGetEntryQuery(id, {
+    skip: !open,
+  });
+  const [updateEntry, { isLoading: entryUpdating }] = useUpdateEntryMutation();
+
+  const isLoading = entryLoading || entryUpdating;
 
   const [formData, setFormData] = useState({
     title: "",
@@ -36,7 +40,7 @@ const EditEntry = ({ id }) => {
         date: new Date(getEntry.data?.date).toISOString().slice(0, 10) || "",
       });
     }
-  }, [getEntry, open]);
+  }, [getEntry]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -135,7 +139,7 @@ const EditEntry = ({ id }) => {
               className="btn btn-primary w-full rounded-lg mt-3"
               disabled={isLoading}
             >
-              {isLoading ? "Saving..." : "Save Changes"}
+              {isLoading ? "Please wait!.." : "Save Changes"}
             </button>
           </form>
         </div>

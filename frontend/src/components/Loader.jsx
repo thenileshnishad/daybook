@@ -4,7 +4,7 @@ const Loader = () => {
     : "dark";
 
   return (
-    <div data-theme={getTheme} className="flex min-h-screen justify-center">
+    <div data-theme={getTheme}>
       <span className="loading loading-bars loading-xl"></span>
     </div>
   );

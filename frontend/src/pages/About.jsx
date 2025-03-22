@@ -63,19 +63,25 @@ const About = () => {
           <li className="flex items-start gap-2">
             <span>🖥️</span>
             <span>
-              <strong>Backend:</strong> Node.js with Express.js
-            </span>
-          </li>
-          <li className="flex items-start gap-2">
-            <span>🗄️</span>
-            <span>
-              <strong>Database:</strong> MongoDB with validations
+              <strong>Backend:</strong> Node.js & Express.js
             </span>
           </li>
           <li className="flex items-start gap-2">
             <span>🔑</span>
             <span>
-              <strong>Authentication:</strong> JWT with secure HTTP cookies
+              <strong>Auth:</strong> JWT with secure HTTP cookies
+            </span>
+          </li>
+          <li className="flex items-start gap-2">
+            <span>📡</span>
+            <span>
+              <strong>State:</strong> Redux Toolkit (RTK) & RTK Query
+            </span>
+          </li>
+          <li className="flex items-start gap-2">
+            <span>🗄️</span>
+            <span>
+              <strong>Database:</strong> MongoDB with server-side validation
             </span>
           </li>
         </ul>
@@ -83,9 +89,18 @@ const About = () => {
         <div className="divider"></div>
 
         <p className="text-lg text-center">
-          Start your journaling journey with DayBook—where your memories are
-          secure, personal, and always accessible.
+          Start your journaling journey with <strong>DayBook</strong> - where
+          your memories are <strong>secure</strong>, <strong>personal</strong>,
+          and always accessible.
         </p>
+
+        <div className="text-center mt-5">
+          <a href="https://github.com/thenileshnishad/daybook" target="_blank">
+            <button className="btn btn-primary">
+              Explore the Code on GitHub
+            </button>
+          </a>
+        </div>
       </div>
     </div>
   );
