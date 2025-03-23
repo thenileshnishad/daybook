@@ -8,16 +8,16 @@ DayBook is a secure and user-friendly personal journaling app built with the MER
 
 ## 📚 Table of Contents
 
-- [**✨ Features**](#-features)
-- [**⚙️ Tech Stack**](#️-tech-stack)
-- [**📂 Project Structure**](#-project-structure)
-- [**🛠️ Installation**](#️-installation)
-- [**🌐 API Endpoints**](#-api-endpoints)
-- [**🙏 Contributing**](#-contributing)
+1. [**Features**](#1-features)
+2. [**Tech Stack**](#2-tech-stack)
+3. [**Project Structure**](#3-project-structure)
+4. [**Installation**](#4-installation)
+5. [**API Endpoints**](#5-api-endpoints)
+6. [**Contributing**](#6-contributing)
 
 ---
 
-## ✨ features
+## 1. Features
 
 - **User Authentication:** Secure login and registration system.
 - **Journal Entries:** Create, read, update, and delete personal daily entries.
@@ -27,7 +27,7 @@ DayBook is a secure and user-friendly personal journaling app built with the MER
 
 ---
 
-## ⚙️ Tech Stack
+## 2. Tech Stack
 
 - **Frontend**: React.js with TailwindCSS & DaisyUI for modern, responsive UI design.
 - **Backend**: Node.js with Express.js for handling server-side logic and API requests.
@@ -38,7 +38,7 @@ DayBook is a secure and user-friendly personal journaling app built with the MER
 
 ---
 
-## 📂 Project Structure
+## 3. Project Structure
 
 The repository is divided into two main directories:
 
@@ -64,7 +64,6 @@ daybook/
 │   │   ├── utils/                          # Utility/helper functions
 │   │   │   └── generateToken.js            # To generate JSON Web Tokens (JWTs) and response cookies
 │   │   └── index.js                        # The main entry point for the Node.js server
-│   ├── .env                                # Environment variables (database URI, secrets)
 │   ├── .env.example                        # Example environment variable file
 │   ├── .gitignore                          # Specifies files and directories to be ignored by Git
 │   ├── package-lock.json                   # Records the exact versions of installed npm packages
@@ -131,15 +130,15 @@ daybook/
 
 ---
 
-## 🛠️ Installation
+## 4. Installation
 
 Follow below steps to set up the daybook project `locally`:
 
 ### Prerequisites
 
 - [Git](https://git-scm.com/)
-- [Node.js](https://nodejs.org/) (any recent version with npm)
-- [MongoDB](https://www.mongodb.com/) (either locally installed or using a cloud service like MongoDB Atlas)
+- [Node.js](https://nodejs.org/)
+- [MongoDB](https://www.mongodb.com/)
 
 ### Follow this:
 
@@ -177,7 +176,7 @@ The app should now be running locally, follow the link that shows on the console
 
 ---
 
-## 🌐 API Endpoints
+## 5. API Endpoints
 
 | **Method** | **Endpoint**                | **Description**                                                                                                                                                                                          |
 | :--------- | :-------------------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -197,7 +196,7 @@ The app should now be running locally, follow the link that shows on the console
 
 ---
 
-## 🙏 Contributing
+## 6. Contributing
 
 Contributions are welcome! If you'd like to improve DayBook, please follow these steps:
 
@@ -221,5 +220,3 @@ Contributions are welcome! If you'd like to improve DayBook, please follow these
    ```
 
 5. Open a pull request detailing your changes.
-
-- I will go over your changes and integrate them into the main branch shortly :)
